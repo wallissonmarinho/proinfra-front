@@ -10,7 +10,7 @@ import {
   Keyboard
 } from "react-native";
 
-function Login() {
+function Login({ navigation }) {
   const [offset] = useState(new Animated.ValueXY({ x: 0, y: 80 }));
   const [opacity] = useState(new Animated.Value(0));
   const [logo] = useState(new Animated.ValueXY({ x: 130, y: 155 }));
@@ -97,7 +97,10 @@ function Login() {
           onChangeText={() => {}}
         />
 
-        <TouchableOpacity style={styles.btnSubmit}>
+        <TouchableOpacity
+          style={styles.btnSubmit}
+          onPress={() => navigation.navigate("Home")}
+        >
           <Text style={styles.btnSubmitText}>Acessar</Text>
         </TouchableOpacity>
 
