@@ -4,13 +4,14 @@ import {
   Alert,
   View,
   Text,
+  StatusBar,
   TouchableOpacity,
   StyleSheet
 } from "react-native";
 
 import MapView, { Marker } from "react-native-maps";
 import Geolocation from "react-native-geolocation-service";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Home = () => {
   const [position, setPosition] = useState({
@@ -53,6 +54,20 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          // flex: 0.08,
+          height: 50,
+          backgroundColor: "blue"
+
+          // alignItems: "center
+        }}
+      >
+        <TouchableOpacity style={{ alignSelf: "center" }}>
+          <Icon name="menu" color={"#fff"} size={30} />
+        </TouchableOpacity>
+      </View>
+      <StatusBar backgroundColor="red" />
       <MapView
         style={styles.map}
         region={position}
@@ -87,7 +102,7 @@ const Home = () => {
           request_location_runtime_permission();
         }}
       >
-        <Icon name="my-location" color={"#fff"} size={30} />
+        <Icon name="map-search" color={"#fff"} size={30} />
       </TouchableOpacity>
     </View>
   );
@@ -98,8 +113,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   map: {
+    flex: 1,
     height: "100%",
-    width: "100%"
+    width: "100%",
+    marginBottom: 10
   },
   logo: {
     backgroundColor: "#fff",
