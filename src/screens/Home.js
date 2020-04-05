@@ -3,17 +3,22 @@ import { DrawerActions } from "@react-navigation/native";
 import {
   PermissionsAndroid,
   Alert,
+  Button,
+  TouchableHighlight,
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
 
+import Modal from "react-native-modal";
+
 import MapView, { Marker } from "react-native-maps";
 import Geolocation from "react-native-geolocation-service";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Home = ({ navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
   const [position, setPosition] = useState({
     latitude: 37.78825,
     longitude: -122.4324,
@@ -91,12 +96,39 @@ const Home = ({ navigation }) => {
       </MapView>
       <TouchableOpacity
         style={styles.locationButton}
+        // onPress={() => {
+        //   request_location_runtime_permission();
+        // }}
         onPress={() => {
-          request_location_runtime_permission();
+          setModalVisible(!modalVisible);
         }}
       >
         <Icon name="map-search" color={"#fff"} size={30} />
       </TouchableOpacity>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+
+            <TouchableHighlight
+              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -124,6 +156,42 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
     elevation: 8,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  openButton: {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
   },
 });
 
