@@ -6,6 +6,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Login from "./screens/Login";
 import Home from "./screens/Home";
 import Cadastro from "./screens/Cadastro";
+import Perfil from "./screens/Perfil";
 
 const Drawer = createDrawerNavigator();
 
@@ -27,6 +28,11 @@ function Routes() {
           name="Home"
           component={Home}
           options={{ drawerLabel: "Home" }}
+        />
+        <Drawer.Screen
+          name="Perfil"
+          component={Perfil}
+          options={{ drawerLabel: "Perfil" }}
         />
       </Drawer.Navigator>
     </NavigationContainer>

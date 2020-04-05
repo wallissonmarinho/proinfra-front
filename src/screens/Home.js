@@ -3,7 +3,6 @@ import { DrawerActions } from "@react-navigation/native";
 import {
   PermissionsAndroid,
   Alert,
-  Button,
   TouchableHighlight,
   View,
   Text,

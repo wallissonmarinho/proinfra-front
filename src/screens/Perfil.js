@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { DrawerActions } from "@react-navigation/native";
 
-const Cadastro = ({ navigation }) => {
+const Perfil = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -28,9 +28,9 @@ const Cadastro = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <Text>Tela de Cadastro</Text>
+      <Text>Tela de Perfil</Text>
     </View>
   );
 };
 
-export default Cadastro;
+export default Perfil;
