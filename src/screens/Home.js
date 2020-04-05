@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { DrawerActions } from "@react-navigation/native";
 import {
   PermissionsAndroid,
   Alert,
@@ -12,7 +13,7 @@ import MapView, { Marker } from "react-native-maps";
 import Geolocation from "react-native-geolocation-service";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [position, setPosition] = useState({
     latitude: 37.78825,
     longitude: -122.4324,
@@ -61,7 +62,10 @@ const Home = () => {
           backgroundColor: "#fff",
         }}
       >
-        <TouchableOpacity style={{ alignSelf: "center", paddingLeft: 20 }}>
+        <TouchableOpacity
+          style={{ alignSelf: "center", paddingLeft: 20 }}
+          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+        >
           <View>
             <Icon name="menu" color={"#191919"} size={30} />
           </View>
