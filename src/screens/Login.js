@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Animated,
-  Keyboard
+  Keyboard,
 } from "react-native";
 
 function Login({ navigation }) {
@@ -29,12 +29,12 @@ function Login({ navigation }) {
       Animated.spring(offset.y, {
         toValue: 0,
         speed: 4,
-        bounciness: 20
+        bounciness: 20,
       }),
       Animated.timing(opacity, {
         toValue: 1,
-        duration: 300
-      })
+        duration: 300,
+      }),
     ]).start();
   }, []);
 
@@ -42,12 +42,12 @@ function Login({ navigation }) {
     Animated.parallel([
       Animated.timing(logo.x, {
         toValue: 55,
-        duration: 100
+        duration: 100,
       }),
       Animated.timing(logo.y, {
         toValue: 65,
-        duration: 100
-      })
+        duration: 100,
+      }),
     ]).start();
   }
 
@@ -55,12 +55,12 @@ function Login({ navigation }) {
     Animated.parallel([
       Animated.timing(logo.x, {
         toValue: 130,
-        duration: 100
+        duration: 100,
       }),
       Animated.timing(logo.y, {
         toValue: 155,
-        duration: 100
-      })
+        duration: 100,
+      }),
     ]).start();
   }
 
@@ -79,8 +79,8 @@ function Login({ navigation }) {
           styles.login,
           {
             opacity: opacity,
-            translateY: offset.y
-          }
+            translateY: offset.y,
+          },
         ]}
       >
         <TextInput
@@ -104,7 +104,10 @@ function Login({ navigation }) {
           <Text style={styles.btnSubmitText}>Acessar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btnCadastro}>
+        <TouchableOpacity
+          style={styles.btnCadastro}
+          onPress={() => navigation.navigate("Cadastro")}
+        >
           <Text style={styles.btnCadastroText}>Cadastrar</Text>
         </TouchableOpacity>
       </Animated.View>
@@ -117,24 +120,24 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#191919"
+    backgroundColor: "#191919",
   },
   logo: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   logoText: {
     color: "#fff",
     fontSize: 30,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   login: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     width: "90%",
-    paddingBottom: 50
+    paddingBottom: 50,
   },
   input: {
     backgroundColor: "#fff",
@@ -143,7 +146,7 @@ const styles = StyleSheet.create({
     color: "#222",
     fontSize: 16,
     borderRadius: 7,
-    padding: 10
+    padding: 10,
   },
   btnSubmit: {
     backgroundColor: "#35aaff",
@@ -151,18 +154,18 @@ const styles = StyleSheet.create({
     height: 45,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 7
+    borderRadius: 7,
   },
   btnSubmitText: {
     color: "#fff",
-    fontSize: 18
+    fontSize: 18,
   },
   btnCadastro: {
-    marginTop: 10
+    marginTop: 10,
   },
   btnCadastroText: {
-    color: "#fff"
-  }
+    color: "#fff",
+  },
 });
 
 export default Login;
