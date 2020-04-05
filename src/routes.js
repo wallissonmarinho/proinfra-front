@@ -19,14 +19,14 @@ function Routes() {
           options={{ drawerLabel: "Login" }}
         />
         <Drawer.Screen
-          name="Home"
-          component={Home}
-          options={{ drawerLabel: "Home" }}
-        />
-        <Drawer.Screen
           name="Cadastro"
           component={Cadastro}
           options={{ drawerLabel: "Cadastro" }}
+        />
+        <Drawer.Screen
+          name="Home"
+          component={Home}
+          options={{ drawerLabel: "Home" }}
         />
       </Drawer.Navigator>
     </NavigationContainer>
