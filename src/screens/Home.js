@@ -4,9 +4,8 @@ import {
   Alert,
   View,
   Text,
-  StatusBar,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
 } from "react-native";
 
 import MapView, { Marker } from "react-native-maps";
@@ -18,7 +17,7 @@ const Home = () => {
     latitude: 37.78825,
     longitude: -122.4324,
     latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421
+    longitudeDelta: 0.0421,
   });
 
   const request_location_runtime_permission = async () => {
@@ -27,19 +26,19 @@ const Home = () => {
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         {
           title: "Permissão de Localização",
-          message: "A aplicação precisa da permissão de localização."
+          message: "A aplicação precisa da permissão de localização.",
         }
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         Geolocation.getCurrentPosition(
-          pos => {
+          (pos) => {
             setPosition({
               ...position,
               latitude: pos.coords.latitude,
-              longitude: pos.coords.longitude
+              longitude: pos.coords.longitude,
             });
           },
-          error => {
+          (error) => {
             console.log(error);
             Alert.alert("Houve um erro ao pegar a latitude e longitude.");
           }
@@ -56,26 +55,31 @@ const Home = () => {
     <View style={styles.container}>
       <View
         style={{
-          // flex: 0.08,
-          height: 50,
-          backgroundColor: "blue"
-
-          // alignItems: "center
+          height: 60,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          backgroundColor: "#fff",
         }}
       >
-        <TouchableOpacity style={{ alignSelf: "center" }}>
-          <Icon name="menu" color={"#fff"} size={30} />
+        <TouchableOpacity style={{ alignSelf: "center", paddingLeft: 20 }}>
+          <View>
+            <Text style={{ color: "#4F4F4F", fontSize: 16 }}>Categorias</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={{ alignSelf: "center", paddingRight: 20 }}>
+          <View>
+            <Icon name="menu" color={"#4f4f4f"} size={30} />
+          </View>
         </TouchableOpacity>
       </View>
-      <StatusBar backgroundColor="red" />
       <MapView
         style={styles.map}
         region={position}
-        onPress={e =>
+        onPress={(e) =>
           setPosition({
             ...position,
             latitude: e.nativeEvent.coordinate.latitude,
-            longitude: e.nativeEvent.coordinate.longitude
+            longitude: e.nativeEvent.coordinate.longitude,
           })
         }
       >
@@ -85,17 +89,6 @@ const Home = () => {
           description={"Testando o marcador no mapa"}
         />
       </MapView>
-      <View style={styles.positonBox}>
-        <Text style={styles.positonBoxTitle}>Sua Localização</Text>
-        <View style={styles.positonBoxLatLon}>
-          <Text style={{ fontSize: 18 }}>Lat.</Text>
-          <Text style={{ fontSize: 18 }}>{position.latitude}</Text>
-        </View>
-        <View style={styles.positonBoxLatLon}>
-          <Text style={{ fontSize: 18 }}>Lon.</Text>
-          <Text style={{ fontSize: 18 }}>{position.longitude}</Text>
-        </View>
-      </View>
       <TouchableOpacity
         style={styles.locationButton}
         onPress={() => {
@@ -110,57 +103,28 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   map: {
     flex: 1,
     height: "100%",
     width: "100%",
-    marginBottom: 10
+    marginBottom: 10,
   },
-  logo: {
-    backgroundColor: "#fff",
-    borderRadius: 15,
-    paddingHorizontal: 15,
-    elevation: 5,
-    marginTop: -730,
-    alignSelf: "center",
-    marginRight: 10,
-    flexDirection: "row"
-  },
-  logoText: {
-    fontWeight: "bold",
-    fontSize: 22
-  },
-  positonBox: {
-    backgroundColor: "#fff",
-    borderRadius: 20,
-    opacity: 0.75,
-    marginTop: -170,
-    marginHorizontal: 40,
-    padding: 25,
-    shadowColor: "#000",
-    elevation: 5
-  },
-  positonBoxTitle: {
-    textAlign: "center",
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#e74c3c"
-  },
-  positonBoxLatLon: { flexDirection: "row", justifyContent: "space-between" },
   locationButton: {
     backgroundColor: "#e74c3c",
     borderRadius: 150,
-    marginTop: -25,
+    marginTop: -35,
+    marginBottom: 20,
+    marginRight: 20,
     width: 50,
     height: 50,
-    alignSelf: "center",
+    alignSelf: "flex-end",
     justifyContent: "center",
     alignItems: "center",
     shadowColor: "#000",
-    elevation: 8
-  }
+    elevation: 8,
+  },
 });
 
 export default Home;
