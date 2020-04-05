@@ -158,9 +158,10 @@ const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 1,
+    backgroundColor: "rgba(52, 52, 52, 0.8)",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    margin: -500,
   },
   modalView: {
     margin: 20,

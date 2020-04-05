@@ -24,7 +24,7 @@ const Perfil = ({ navigation }) => {
         </TouchableOpacity>
         <View style={{ alignSelf: "center", paddingRight: 20 }}>
           <View>
-            <Text style={{ color: "#191919", fontSize: 16 }}>Pro Infra</Text>
+            <Text style={{ color: "#191919", fontSize: 16 }}>Perfil</Text>
           </View>
         </View>
       </View>
