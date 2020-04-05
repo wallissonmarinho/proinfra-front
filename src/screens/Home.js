@@ -63,14 +63,14 @@ const Home = () => {
       >
         <TouchableOpacity style={{ alignSelf: "center", paddingLeft: 20 }}>
           <View>
-            <Text style={{ color: "#4F4F4F", fontSize: 16 }}>Categorias</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={{ alignSelf: "center", paddingRight: 20 }}>
-          <View>
             <Icon name="menu" color={"#4f4f4f"} size={30} />
           </View>
         </TouchableOpacity>
+        <View style={{ alignSelf: "center", paddingRight: 20 }}>
+          <View>
+            <Text style={{ color: "#4F4F4F", fontSize: 16 }}>Pro Infra</Text>
+          </View>
+        </View>
       </View>
       <MapView
         style={styles.map}
