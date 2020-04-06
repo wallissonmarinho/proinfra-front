@@ -19,10 +19,10 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 const Home = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [position, setPosition] = useState({
-    latitude: 37.78825,
-    longitude: -122.4324,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+    latitude: -7.1588549,
+    longitude: -34.8572636,
+    latitudeDelta: 0.0193,
+    longitudeDelta: 0.0134,
   });
 
   const request_location_runtime_permission = async () => {
@@ -64,6 +64,7 @@ const Home = ({ navigation }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           backgroundColor: "#fff",
+          marginBottom: 30,
         }}
       >
         <TouchableOpacity
@@ -80,29 +81,49 @@ const Home = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <MapView
-        style={styles.map}
-        region={position}
-        onPress={(e) =>
-          setPosition({
-            ...position,
-            latitude: e.nativeEvent.coordinate.latitude,
-            longitude: e.nativeEvent.coordinate.longitude,
-          })
-        }
-      >
-        <Marker coordinate={position} title={"Sua Localização"} />
-      </MapView>
-      <TouchableOpacity
-        style={styles.locationButton}
-        // onPress={() => {
-        //   request_location_runtime_permission();
-        // }}
-        onPress={() => {
-          setModalVisible(!modalVisible);
+
+      <View
+        style={{
+          resizeMode: "cover",
+          flex: 1,
+          justifyContent: "center",
+          marginTop: 60,
+          alignItems: "center",
+          position: "absolute",
+          width: "100%",
+          height: "100%",
         }}
       >
-        <Icon name="map-search" color={"#fff"} size={30} />
+        <MapView
+          style={styles.map}
+          region={position}
+          onPress={(e) =>
+            setPosition({
+              ...position,
+              latitude: e.nativeEvent.coordinate.latitude,
+              longitude: e.nativeEvent.coordinate.longitude,
+            })
+          }
+        >
+          <Marker coordinate={position} title={"Sua Localização"} />
+        </MapView>
+        <TouchableOpacity
+          style={styles.ationButton}
+          onPress={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <Icon name="bullhorn-outline" color={"#fff"} size={30} />
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity
+        style={styles.locationButton}
+        onPress={() => {
+          request_location_runtime_permission();
+        }}
+      >
+        <Icon name="crosshairs-gps" color={"#2196F3"} size={25} />
       </TouchableOpacity>
 
       <Modal
@@ -143,11 +164,24 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   locationButton: {
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    borderRadius: 150,
+    marginBottom: 15,
+    marginRight: 15,
+    width: 40,
+    height: 40,
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    elevation: 8,
+  },
+  ationButton: {
     backgroundColor: "#191919",
     borderRadius: 150,
-    marginTop: -35,
-    marginBottom: 20,
-    marginRight: 20,
+    marginTop: -100,
+    marginBottom: 100,
+    marginRight: 15,
     width: 50,
     height: 50,
     alignSelf: "flex-end",
