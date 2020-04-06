@@ -21,8 +21,8 @@ const Home = ({ navigation }) => {
   const [position, setPosition] = useState({
     latitude: -7.1588549,
     longitude: -34.8572636,
-    latitudeDelta: 0.0193,
-    longitudeDelta: 0.0134,
+    latitudeDelta: 0.0054,
+    longitudeDelta: 0.0054,
   });
 
   const request_location_runtime_permission = async () => {
