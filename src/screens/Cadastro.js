@@ -1,36 +1,188 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { DrawerActions } from "@react-navigation/native";
+import React, { useState, useEffect } from "react";
+import {
+  KeyboardAvoidingView,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Animated,
+  Keyboard,
+} from "react-native";
 
-const Cadastro = ({ navigation }) => {
+function Login({ navigation }) {
+  const [offset] = useState(new Animated.ValueXY({ x: 0, y: 80 }));
+  const [opacity] = useState(new Animated.Value(0));
+  const [logo] = useState(new Animated.ValueXY({ x: 130, y: 155 }));
+
+  useEffect(() => {
+    KeyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      keyboardDidShow
+    );
+    KeyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      keyboardDidHide
+    );
+
+    Animated.parallel([
+      Animated.spring(offset.y, {
+        toValue: 0,
+        speed: 4,
+        bounciness: 20,
+      }),
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 300,
+      }),
+    ]).start();
+  }, []);
+
+  function keyboardDidShow() {
+    Animated.parallel([
+      Animated.timing(logo.x, {
+        toValue: 55,
+        duration: 100,
+      }),
+      Animated.timing(logo.y, {
+        toValue: 65,
+        duration: 100,
+      }),
+    ]).start();
+  }
+
+  function keyboardDidHide() {
+    Animated.parallel([
+      Animated.timing(logo.x, {
+        toValue: 130,
+        duration: 100,
+      }),
+      Animated.timing(logo.y, {
+        toValue: 155,
+        duration: 100,
+      }),
+    ]).start();
+  }
+
   return (
-    <View style={{ flex: 1 }}>
-      <View
-        style={{
-          height: 60,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          backgroundColor: "#fff",
-        }}
+    <KeyboardAvoidingView style={styles.background}>
+      <Animated.View
+        style={[
+          styles.login,
+          {
+            opacity: opacity,
+            translateY: offset.y,
+          },
+        ]}
       >
-        <TouchableOpacity
-          style={{ alignSelf: "center", paddingLeft: 20 }}
-          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-        >
-          <View>
-            <Icon name="menu" color={"#191919"} size={30} />
-          </View>
-        </TouchableOpacity>
-        <View style={{ alignSelf: "center", paddingRight: 20 }}>
-          <View>
-            <Text style={{ color: "#191919", fontSize: 16 }}>Cadastro</Text>
-          </View>
-        </View>
-      </View>
-      <Text>Tela de Cadastro</Text>
-    </View>
-  );
-};
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          autoCorrect={false}
+          onChangeText={() => { }}
+        />
 
-export default Cadastro;
+        <TextInput
+          style={styles.input}
+          placeholder="Nome "
+          autoCorrect={false}
+          onChangeText={() => { }}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Sobrenome"
+          autoCorrect={false}
+          onChangeText={() => { }}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          autoCorrect={false}
+          onChangeText={() => { }}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Confirmar Senha"
+          autoCorrect={false}
+          onChangeText={() => { }}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Telefone"
+          autoCorrect={false}
+          onChangeText={() => { }}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="CPF"
+          autoCorrect={false}
+          onChangeText={() => { }}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Data de Nascimento"
+          autoCorrect={false}
+          onChangeText={() => { }}
+        />
+
+        <TouchableOpacity
+          style={styles.btnSubmit}
+          onPress={() => navigation.navigate("Home")}
+        >
+          <Text style={styles.btnSubmitText}>Cadastrar</Text>
+        </TouchableOpacity>
+
+      </Animated.View>
+    </KeyboardAvoidingView>
+  );
+}
+
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#191919",
+  },
+  login: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "90%",
+    paddingBottom: 50,
+  },
+  input: {
+    backgroundColor: "#fff",
+    width: "90%",
+    marginBottom: 15,
+    color: "#222",
+    fontSize: 16,
+    borderRadius: 7,
+    padding: 10,
+  },
+  btnSubmit: {
+    backgroundColor: "#35aaff",
+    width: "90%",
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 7,
+  },
+  btnSubmitText: {
+    color: "#fff",
+    fontSize: 18,
+  },
+  btnCadastro: {
+    marginTop: 10,
+  },
+  btnCadastroText: {
+    color: "#fff",
+  },
+});
+
+export default Login;
