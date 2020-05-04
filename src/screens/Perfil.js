@@ -1,19 +1,20 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { DrawerActions } from "@react-navigation/native";
+import React from "react";
+import {
+  View,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from "react-native";
+
 
 const Perfil = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
-      <View
-        style={{
-          height: 60,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          backgroundColor: "#fff",
-        }}
-      >
+      <View style={styles.menu}>
         <TouchableOpacity
           style={{ alignSelf: "center", paddingLeft: 20 }}
           onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
@@ -28,9 +29,26 @@ const Perfil = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <Text>Tela de Perfil</Text>
+      <View style={styles.background}>
+        <Icon name="face" color={"#191919"} size={100} />
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#EBEBEB",
+  },
+  menu: {
+    height: 60,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#DFDFDF",
+  },
+});
 
 export default Perfil;

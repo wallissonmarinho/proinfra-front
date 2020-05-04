@@ -58,15 +58,7 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          height: 60,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          backgroundColor: "#fff",
-          marginBottom: 30,
-        }}
-      >
+      <View style={styles.menu}>
         <TouchableOpacity
           style={{ alignSelf: "center", paddingLeft: 20 }}
           onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
@@ -82,18 +74,7 @@ const Home = ({ navigation }) => {
         </View>
       </View>
 
-      <View
-        style={{
-          resizeMode: "cover",
-          flex: 1,
-          justifyContent: "center",
-          marginTop: 60,
-          alignItems: "center",
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-        }}
-      >
+      <View style={styles.mapContainer}>
         <MapView
           style={styles.map}
           region={position}
@@ -157,11 +138,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  menu: {
+    height: 60,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#DFDFDF",
+  },
   map: {
     flex: 1,
     height: "100%",
     width: "100%",
     marginBottom: 10,
+  },
+  mapContainer: {
+    resizeMode: "cover",
+    flex: 1,
+    justifyContent: "center",
+    marginTop: 60,
+    alignItems: "center",
+    position: "absolute",
+    width: "100%",
+    height: "100%",
   },
   locationButton: {
     backgroundColor: "rgba(255, 255, 255, 0.8)",

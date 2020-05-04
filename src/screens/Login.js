@@ -87,14 +87,14 @@ function Login({ navigation }) {
           style={styles.input}
           placeholder="Email"
           autoCorrect={false}
-          onChangeText={() => {}}
+          onChangeText={() => { }}
         />
 
         <TextInput
           style={styles.input}
           placeholder="Senha"
           autoCorrect={false}
-          onChangeText={() => {}}
+          onChangeText={() => { }}
         />
 
         <TouchableOpacity
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#191919",
+    backgroundColor: "#EBEBEB",
   },
   logo: {
     flex: 1,

@@ -90,13 +90,6 @@ function Login({ navigation }) {
 
         <TextInput
           style={styles.input}
-          placeholder="Sobrenome"
-          autoCorrect={false}
-          onChangeText={() => { }}
-        />
-
-        <TextInput
-          style={styles.input}
           placeholder="Senha"
           autoCorrect={false}
           onChangeText={() => { }}
@@ -147,7 +140,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#191919",
+    backgroundColor: "#EBEBEB",
   },
   login: {
     flex: 1,
