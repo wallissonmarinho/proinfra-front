@@ -7,7 +7,7 @@ function Login({navigation}) {
       <Text>Login</Text>
       <Button
         title="Categorias"
-        onPress={() => navigation.navigate('Categorias')}
+        onPress={() => navigation.navigate('HomeTabs')}
       />
     </View>
   );

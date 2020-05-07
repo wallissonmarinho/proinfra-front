@@ -7,7 +7,7 @@ function Categorias({navigation}) {
       <Text>Categorias</Text>
       <Button
         title="Abrir Chamado"
-        onPress={() => navigation.navigate('Abrir Chamado')}
+        onPress={() => navigation.navigate('AbrirChamado')}
       />
     </View>
   );

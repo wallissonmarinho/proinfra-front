@@ -7,7 +7,7 @@ function Ocorrencias({navigation}) {
       <Text>Ocorrencias</Text>
       <Button
         title="Chamados Abertos"
-        onPress={() => navigation.navigate('Chamados Abertos')}
+        onPress={() => navigation.navigate('ChamadosAbertos')}
       />
     </View>
   );
