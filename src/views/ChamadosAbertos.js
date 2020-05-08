@@ -1,44 +1,57 @@
-import * as React from 'react';
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Title,
-  View,
-  Thumbnail,
-  Text,
-} from 'native-base';
-import {Button, StyleSheet} from 'react-native';
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {Header, Container, Body, Title} from 'native-base';
 
-function ChamadosAbertos({navigation}) {
-  return (
-    <Container>
-      <Header androidStatusBarColor="#573ea8" style={styles.header} hasTabs>
-        {/* <Left>
-          <Thumbnail small source={{uri: logo_url}} />
-        </Left> */}
-        <Body>
-          <Title>Abrir Chamado</Title>
-        </Body>
-      </Header>
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>Chamados Abertos</Text>
-        <Button title="Perfil" onPress={() => navigation.navigate('Perfil')} />
-      </View>
-    </Container>
-  );
+class ChamadosAbertos extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+  }
+
+  render() {
+    const { count } = this.state;
+    return (
+      <Container>
+        <View style={{flex: 1}}>
+          <Header androidStatusBarColor="#0d83e0" style={styles.header} hasTabs>
+          <Body>
+            <Title>Chamados Abertos</Title>
+          </Body>
+        </Header>
+          <View style={styles.countContainer}>
+            <Text>Count: {count}</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate('Perfil')}
+          >
+            <Text>Chamados Abertos</Text>
+          </TouchableOpacity>
+        </View>
+      </Container>
+    );
+  }
 }
-
-const logo_url = 'https://avatars0.githubusercontent.com/u/28929274?s=200&v=4';
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#7159C1',
+    backgroundColor: '#2196f3',
   },
   container: {
     flex: 1,
   },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10
+  },
+  countContainer: {
+    alignItems: "center",
+    padding: 10
+  }
 });
 
 export default ChamadosAbertos;
+
+
+

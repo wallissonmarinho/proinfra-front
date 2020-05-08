@@ -40,15 +40,16 @@ function HomeTabs({navigation}) {
   return (
     <Tab.Navigator
       initialRouteName="Feed"
-      activeColor="#e91e63"
-      style={{backgroundColor: 'tomato'}}>
+      activeColor="#fff"
+      inactiveColor="#fff"
+      barStyle={{ backgroundColor: '#0d83e0' }}>
       <Tab.Screen
         name="Categorias"
         component={CategoriaStack}
         options={{
           tabBarLabel: 'Categorias',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
+            <MaterialCommunityIcons name="menu" color={color} size={26} />
           ),
         }}
       />
@@ -58,7 +59,7 @@ function HomeTabs({navigation}) {
         options={{
           tabBarLabel: 'ChamadosAbertos',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
+            <MaterialCommunityIcons name="alert-box-outline" color={color} size={26} />
           ),
         }}
       />
@@ -68,7 +69,7 @@ function HomeTabs({navigation}) {
         options={{
           tabBarLabel: 'Ocorrencias',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
+            <MaterialCommunityIcons name="calendar-check-outline" color={color} size={26} />
           ),
         }}
       />
@@ -78,7 +79,7 @@ function HomeTabs({navigation}) {
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
+            <MaterialCommunityIcons name="account-box-outline" color={color} size={26} />
           ),
         }}
       />
