@@ -17,9 +17,25 @@ import {
   Button,
   Header,
 } from 'native-base';
-import {Input, Layout} from '@ui-kitten/components';
+import {Input} from '@ui-kitten/components';
 
 class Cadastro extends Component {
+  state = {
+    email: '',
+    password: '',
+  };
+  handleEmail = text => {
+    this.setState({email: text});
+  };
+  handlePassword = text => {
+    this.setState({password: text});
+  };
+  login = (email, pass) => {
+    alert('email: ' + email + ' password: ' + pass);
+  };
+  login = (email, pass) => {
+    alert('email: ' + email + ' password: ' + pass);
+  };
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
@@ -55,15 +71,24 @@ class Cadastro extends Component {
 
                   <Input style={styles.Input} placeholder="Telefone" />
 
-                  <Input style={styles.Input} placeholder="Email" />
+                  <Input
+                    style={styles.Input}
+                    placeholder="Email"
+                    onChangeText={this.handleEmail}
+                  />
 
-                  <Input style={styles.Input} placeholder="Senha" />
+                  <Input
+                    style={styles.Input}
+                    placeholder="Senha"
+                    onChangeText={this.handlePassword}
+                  />
                 </View>
 
                 <View style={styles.Button}>
                   <Button
                     block
                     style={styles.mainBtn}
+                    // onPress = {() => this.login(this.state.email, this.state.password)}
                     onPress={() => this.props.navigation.navigate('Login')}>
                     <Text style={styles.btnText}>Finalizar Cadastro</Text>
                   </Button>
