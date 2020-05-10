@@ -1,13 +1,43 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, KeyboardAvoidingView} from 'react-native';
-import {Form, Item, Body, Text, CheckBox, Button, Header} from 'native-base';
+import {
+  View,
+  StyleSheet,
+  KeyboardAvoidingView,
+  TouchableOpacity,
+} from 'react-native';
+import {
+  Form,
+  Item,
+  Body,
+  Text,
+  CheckBox,
+  Button,
+  Header,
+  Left,
+  Title,
+} from 'native-base';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Input} from '@ui-kitten/components';
 
 class Login extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={{flex: 1}}>
-        <Header androidStatusBarColor="#0d83e0" style={styles.header} hasTabs />
+        <Header androidStatusBarColor="#0d83e0" style={styles.header} hasTabs>
+          <Left>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('BemVindo')}>
+              <MaterialCommunityIcons
+                name="arrow-left-bold-box-outline"
+                size={30}
+                color={'#fff'}
+              />
+            </TouchableOpacity>
+          </Left>
+          <Body>
+            <Title />
+          </Body>
+        </Header>
         <View style={styles.container}>
           <View style={styles.top} />
 

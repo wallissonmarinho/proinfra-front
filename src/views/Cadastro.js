@@ -1,13 +1,43 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, KeyboardAvoidingView} from 'react-native';
-import {Form, Item, Body, Text, CheckBox, Button, Header} from 'native-base';
+import {
+  View,
+  StyleSheet,
+  KeyboardAvoidingView,
+  TouchableOpacity,
+} from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {
+  Form,
+  Item,
+  Body,
+  Title,
+  Text,
+  CheckBox,
+  Left,
+  Button,
+  Header,
+} from 'native-base';
 import {Input, Layout} from '@ui-kitten/components';
 
 class Cadastro extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={{flex: 1}}>
-        <Header androidStatusBarColor="#0d83e0" style={styles.header} hasTabs />
+        <Header androidStatusBarColor="#0d83e0" style={styles.header} hasTabs>
+          <Left>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('BemVindo')}>
+              <MaterialCommunityIcons
+                name="arrow-left-bold-box-outline"
+                size={30}
+                color={'#fff'}
+              />
+            </TouchableOpacity>
+          </Left>
+          <Body>
+            <Title>Cadastrar</Title>
+          </Body>
+        </Header>
         <View style={styles.container}>
           <View style={styles.top} />
           <View style={styles.middle}>
@@ -22,19 +52,17 @@ class Cadastro extends Component {
 
                   <Input style={styles.Input} size="small" placeholder="CPF" />
 
-                  <Layout style={styles.rowContainer} level="1">
-                    <Input
-                      style={{flex: 1, marginRight: 2, marginBottom: 5}}
-                      size="small"
-                      label="Data de Nascimento"
-                    />
+                  <Input
+                    style={styles.Input}
+                    size="small"
+                    placeholder="Data de Nascimento"
+                  />
 
-                    <Input
-                      style={{flex: 1, marginLeft: 2, marginBottom: 5}}
-                      size="small"
-                      label="Telefone"
-                    />
-                  </Layout>
+                  <Input
+                    style={styles.Input}
+                    size="small"
+                    placeholder="Telefone"
+                  />
 
                   <Input
                     style={styles.Input}
@@ -89,7 +117,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'absolute',
     zIndex: 2,
-    top: '5%',
+    top: '4%',
     backgroundColor: 'transparent',
     paddingLeft: 10,
     paddingRight: 10,
@@ -106,7 +134,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderRadius: 5,
     paddingBottom: 40,
-    top: '5%',
+    top: '4%',
   },
   formItems: {
     marginTop: 15,
@@ -125,7 +153,7 @@ const styles = StyleSheet.create({
   },
   Button: {
     padding: 30,
-    marginTop: -20,
+    marginTop: -25,
   },
   mainBtn: {
     backgroundColor: '#0d83e0',
