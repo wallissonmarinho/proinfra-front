@@ -4,6 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as eva from '@eva-design/eva';
+import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
 
 import 'react-native-gesture-handler';
 
@@ -42,7 +44,7 @@ function HomeTabs({navigation}) {
       initialRouteName="Feed"
       activeColor="#fff"
       inactiveColor="#fff"
-      barStyle={{ backgroundColor: '#0d83e0' }}>
+      barStyle={{backgroundColor: '#0d83e0'}}>
       <Tab.Screen
         name="Categorias"
         component={CategoriaStack}
@@ -59,7 +61,11 @@ function HomeTabs({navigation}) {
         options={{
           tabBarLabel: 'ChamadosAbertos',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="alert-box-outline" color={color} size={26} />
+            <MaterialCommunityIcons
+              name="alert-box-outline"
+              color={color}
+              size={26}
+            />
           ),
         }}
       />
@@ -69,7 +75,11 @@ function HomeTabs({navigation}) {
         options={{
           tabBarLabel: 'Ocorrencias',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="calendar-check-outline" color={color} size={26} />
+            <MaterialCommunityIcons
+              name="calendar-check-outline"
+              color={color}
+              size={26}
+            />
           ),
         }}
       />
@@ -79,7 +89,11 @@ function HomeTabs({navigation}) {
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="account-box-outline" color={color} size={26} />
+            <MaterialCommunityIcons
+              name="account-box-outline"
+              color={color}
+              size={26}
+            />
           ),
         }}
       />
@@ -116,9 +130,11 @@ function App({navigation}) {
 
 function Routes() {
   return (
-    <NavigationContainer>
-      <App />
-    </NavigationContainer>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <NavigationContainer>
+        <App />
+      </NavigationContainer>
+    </ApplicationProvider>
   );
 }
 

@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, KeyboardAvoidingView } from 'react-native';
-import { Form, Item, Input, Body, Text, CheckBox, Button, Header } from 'native-base';
+import React, {Component} from 'react';
+import {View, StyleSheet, KeyboardAvoidingView} from 'react-native';
+import {Form, Item, Body, Text, CheckBox, Button, Header} from 'native-base';
+import {Input} from '@ui-kitten/components';
 
 class Login extends Component {
   render() {
     return (
-      <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-        style={{ flex: 1 }}
-      >
+      <KeyboardAvoidingView style={{flex: 1}}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header} hasTabs />
         <View style={styles.container}>
           <View style={styles.top} />
@@ -21,19 +19,23 @@ class Login extends Component {
                 <Item style={styles.formItems}>
                   <Input placeholder="Seu email" style={styles.Input} />
                 </Item>
+
                 <Item style={styles.formItems}>
                   <Input placeholder="Senha" style={styles.Input} />
                 </Item>
 
                 <View style={styles.Button}>
-                  <Button block style={styles.mainBtn} onPress={() => this.props.navigation.navigate('HomeTabs')}>
+                  <Button
+                    block
+                    style={styles.mainBtn}
+                    onPress={() => this.props.navigation.navigate('HomeTabs')}>
                     <Text style={styles.btnText}>Entrar</Text>
                   </Button>
                 </View>
               </Form>
             </View>
           </View>
-          <View style={styles.bottom}></View>
+          <View style={styles.bottom} />
         </View>
       </KeyboardAvoidingView>
     );
@@ -89,17 +91,18 @@ const styles = StyleSheet.create({
   },
   formItems: {
     marginTop: 15,
-    borderBottomColor: '#2D3057',
+    borderBottomColor: 'transparent',
   },
   Input: {
-    fontSize: 12,
+    flex: 1,
+    paddingRight: 10,
   },
   Button: {
-    padding: 30.8,
-    borderRadius: 4,
+    padding: 30,
   },
   mainBtn: {
     backgroundColor: '#0d83e0',
+    borderRadius: 4,
   },
   btnText: {
     color: '#fff',
