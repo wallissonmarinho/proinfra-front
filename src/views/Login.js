@@ -22,7 +22,7 @@ import {Input} from '@ui-kitten/components';
 class Login extends Component {
   render() {
     return (
-      <KeyboardAvoidingView style={{flex: 1}}>
+      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header} hasTabs>
           <Left>
             <TouchableOpacity

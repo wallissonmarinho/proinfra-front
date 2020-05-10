@@ -22,7 +22,7 @@ import {Input, Layout} from '@ui-kitten/components';
 class Cadastro extends Component {
   render() {
     return (
-      <KeyboardAvoidingView style={{flex: 1}}>
+      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header} hasTabs>
           <Left>
             <TouchableOpacity
@@ -44,37 +44,20 @@ class Cadastro extends Component {
             <View style={styles.formArea}>
               <Form>
                 <View style={styles.InputContainer}>
-                  <Input
-                    style={styles.Input}
-                    size="small"
-                    placeholder="Nome Completo"
-                  />
+                  <Input style={styles.Input} placeholder="Nome Completo" />
 
-                  <Input style={styles.Input} size="small" placeholder="CPF" />
+                  <Input style={styles.Input} placeholder="CPF" />
 
                   <Input
                     style={styles.Input}
-                    size="small"
                     placeholder="Data de Nascimento"
                   />
 
-                  <Input
-                    style={styles.Input}
-                    size="small"
-                    placeholder="Telefone"
-                  />
+                  <Input style={styles.Input} placeholder="Telefone" />
 
-                  <Input
-                    style={styles.Input}
-                    size="small"
-                    placeholder="Email"
-                  />
+                  <Input style={styles.Input} placeholder="Email" />
 
-                  <Input
-                    style={styles.Input}
-                    size="small"
-                    placeholder="Senha"
-                  />
+                  <Input style={styles.Input} placeholder="Senha" />
                 </View>
 
                 <View style={styles.Button}>
@@ -117,7 +100,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'absolute',
     zIndex: 2,
-    top: '4%',
+    top: '5%',
     backgroundColor: 'transparent',
     paddingLeft: 10,
     paddingRight: 10,
@@ -134,7 +117,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderRadius: 5,
     paddingBottom: 40,
-    top: '4%',
+    top: '5%',
   },
   formItems: {
     marginTop: 15,
