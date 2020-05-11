@@ -1,30 +1,29 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
 
 class Perfil extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { count: 0 };
+    this.state = {count: 0};
   }
 
   render() {
-    const { count } = this.state;
+    const {count} = this.state;
     return (
       <Container>
         <View style={{flex: 1}}>
-          <Header androidStatusBarColor="#0d83e0" style={styles.header} hasTabs>
-          <Body>
-            <Title>Perfil</Title>
-          </Body>
-        </Header>
+          <Header androidStatusBarColor="#0d83e0" style={styles.header}>
+            <Body>
+              <Title>Perfil</Title>
+            </Body>
+          </Header>
           <View style={styles.countContainer}>
             <Text>Count: {count}</Text>
           </View>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.props.navigation.navigate('BemVindo')}
-          >
+            onPress={() => this.props.navigation.navigate('BemVindo')}>
             <Text>Sair</Text>
           </TouchableOpacity>
         </View>
@@ -41,18 +40,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
   },
   countContainer: {
-    alignItems: "center",
-    padding: 10
-  }
+    alignItems: 'center',
+    padding: 10,
+  },
 });
 
 export default Perfil;
-
-
-
-

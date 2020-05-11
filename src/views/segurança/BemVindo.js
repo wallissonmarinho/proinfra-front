@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, ImageBackground, StatusBar} from 'react-native';
+import {View, StyleSheet, ImageBackground} from 'react-native';
 import {Text, Container} from 'native-base';
 import {Button} from '@ui-kitten/components';
-import bgSrc from '../imagens/wallpaper.jpg';
+import backgroundImage from '../../assets/wallpaper.jpg';
 
 class Login extends Component {
   render() {
@@ -12,8 +12,7 @@ class Login extends Component {
           blurRadius={1}
           resizeMode="cover"
           style={styles.picture}
-          source={bgSrc}>
-          <StatusBar backgroundColor="#0d83e0" />
+          source={backgroundImage}>
           <View style={styles.middle}>
             <Text style={styles.textContainer}>ProInfra</Text>
 

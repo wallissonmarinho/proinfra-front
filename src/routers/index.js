@@ -9,14 +9,16 @@ import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
 
 import 'react-native-gesture-handler';
 
-import AbrirChamado from './views/AbrirChamado';
-import BemVindo from './views/BemVindo';
-import Cadastro from './views/Cadastro';
-import Categorias from './views/Categorias';
-import ChamadosAbertos from './views/ChamadosAbertos';
-import Login from './views/Login';
-import Ocorrencias from './views/Ocorrencias';
-import Perfil from './views/Perfil';
+import AbrirChamado from '../views/chamados/solicitar/AbrirChamado';
+import Categorias from '../views/chamados/solicitar/Categorias';
+
+import ChamadosAbertos from '../views/chamados/detalhar/ChamadosAbertos';
+import Ocorrencias from '../views/chamados/detalhar/Ocorrencias';
+
+import Perfil from '../views/segurança/Perfil';
+import BemVindo from '../views/segurança/BemVindo';
+import Cadastro from '../views/segurança/Cadastro';
+import Login from '../views/segurança/Login';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -130,11 +132,9 @@ function App({navigation}) {
 
 function Routes() {
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <NavigationContainer>
-        <App />
-      </NavigationContainer>
-    </ApplicationProvider>
+    <NavigationContainer>
+      <App />
+    </NavigationContainer>
   );
 }
 

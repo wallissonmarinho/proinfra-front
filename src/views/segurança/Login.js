@@ -23,7 +23,7 @@ class Login extends Component {
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
-        <Header androidStatusBarColor="#0d83e0" style={styles.header} hasTabs>
+        <Header androidStatusBarColor="#0d83e0" style={styles.header}>
           <Left>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('BemVindo')}>
