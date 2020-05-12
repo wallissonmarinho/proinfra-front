@@ -1,23 +1,8 @@
 /* eslint-disable no-alert */
 import React, {Component} from 'react';
-import {
-  View,
-  StyleSheet,
-  KeyboardAvoidingView,
-  TouchableOpacity,
-} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {
-  Form,
-  Item,
-  Body,
-  Title,
-  Text,
-  CheckBox,
-  Left,
-  Button,
-  Header,
-} from 'native-base';
+import {Form, Body, Title, Text, Left, Button, Header} from 'native-base';
 import {Input} from '@ui-kitten/components';
 
 class Cadastro extends Component {
@@ -40,7 +25,7 @@ class Cadastro extends Component {
   };
   render() {
     return (
-      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
+      <View style={{flex: 1}}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header}>
           <Left>
             <TouchableOpacity
@@ -56,62 +41,63 @@ class Cadastro extends Component {
             <Title>Cadastrar</Title>
           </Body>
         </Header>
+
         <View style={styles.container}>
           <View style={styles.top} />
           <View style={styles.middle}>
-            <View style={styles.formArea}>
-              <Form>
-                <View style={styles.InputContainer}>
-                  <Input style={styles.Input} placeholder="Nome Completo" />
+            <ScrollView>
+              <View style={styles.formArea}>
+                <Form>
+                  <View style={styles.InputContainer}>
+                    <Input style={styles.Input} placeholder="Nome Completo" />
 
-                  <Input
-                    style={styles.Input}
-                    placeholder="CPF"
-                    keyboardType="numeric"
-                    maxLength={11}
-                  />
+                    <Input
+                      style={styles.Input}
+                      placeholder="CPF"
+                      keyboardType="numeric"
+                      maxLength={11}
+                    />
 
-                  <Input
-                    style={styles.Input}
-                    placeholder="Data de Nascimento"
-                    keyboardType="numeric"
-                  />
+                    <Input
+                      style={styles.Input}
+                      placeholder="Data de Nascimento"
+                      keyboardType="numeric"
+                    />
 
-                  <Input
-                    style={styles.Input}
-                    placeholder="Telefone"
-                    keyboardType="numeric"
-                  />
+                    <Input
+                      style={styles.Input}
+                      placeholder="Telefone"
+                      keyboardType="numeric"
+                    />
 
-                  <Input
-                    style={styles.Input}
-                    placeholder="Email"
-                    onChangeText={this.handleEmail}
-                  />
+                    <Input
+                      style={styles.Input}
+                      placeholder="Email"
+                      onChangeText={this.handleEmail}
+                    />
 
-                  <Input
-                    style={styles.Input}
-                    placeholder="Senha"
-                    onChangeText={this.handlePassword}
-                  />
-                </View>
+                    <Input
+                      style={styles.Input}
+                      placeholder="Senha"
+                      onChangeText={this.handlePassword}
+                    />
+                  </View>
 
-                <View style={styles.Button}>
-                  <Button
-                    block
-                    style={styles.mainBtn}
-                    // onPress = {() => this.login(this.state.email, this.state.password)}
-                    onPress={() => this.props.navigation.navigate('Login')}>
-                    <Text style={styles.btnText}>Finalizar Cadastro</Text>
-                  </Button>
-                </View>
-              </Form>
-            </View>
+                  <View style={styles.Button}>
+                    <Button
+                      block
+                      style={styles.mainBtn}
+                      // onPress = {() => this.login(this.state.email, this.state.password)}
+                      onPress={() => this.props.navigation.navigate('Login')}>
+                      <Text style={styles.btnText}>Finalizar Cadastro</Text>
+                    </Button>
+                  </View>
+                </Form>
+              </View>
+            </ScrollView>
           </View>
-
-          <View style={styles.bottom} />
         </View>
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
@@ -142,12 +128,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
-  bottom: {
-    position: 'relative',
-    height: '100%',
-    paddingRight: 12,
-    paddingLeft: 12,
-  },
   formArea: {
     alignSelf: 'center',
     width: '100%',
@@ -155,15 +135,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingBottom: 40,
     top: '5%',
-  },
-  formItems: {
-    marginTop: 15,
-    borderBottomColor: 'transparent',
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
   Input: {
     marginBottom: 5,
