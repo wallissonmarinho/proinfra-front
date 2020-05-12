@@ -24,6 +24,7 @@ class Cadastro extends Component {
   state = {
     email: '',
     password: '',
+    text: '',
   };
   handleEmail = text => {
     this.setState({email: text});
@@ -63,14 +64,24 @@ class Cadastro extends Component {
                 <View style={styles.InputContainer}>
                   <Input style={styles.Input} placeholder="Nome Completo" />
 
-                  <Input style={styles.Input} placeholder="CPF" />
+                  <Input
+                    style={styles.Input}
+                    placeholder="CPF"
+                    keyboardType="numeric"
+                    maxLength={11}
+                  />
 
                   <Input
                     style={styles.Input}
                     placeholder="Data de Nascimento"
+                    keyboardType="numeric"
                   />
 
-                  <Input style={styles.Input} placeholder="Telefone" />
+                  <Input
+                    style={styles.Input}
+                    placeholder="Telefone"
+                    keyboardType="numeric"
+                  />
 
                   <Input
                     style={styles.Input}
