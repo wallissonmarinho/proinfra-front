@@ -1,40 +1,19 @@
 /* eslint-disable no-alert */
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
-import {
-  View,
-  StyleSheet,
-  KeyboardAvoidingView,
-  TouchableOpacity,
-} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Form, Body, Title, Text, Left, Button, Header} from 'native-base';
 import {Input} from '@ui-kitten/components';
 
 class Cadastro extends Component {
-  state = {
-    email: '',
-    password: '',
-  };
-  handleEmail = text => {
-    this.setState({email: text});
-  };
-  handlePassword = text => {
-    this.setState({password: text});
-  };
-  login = (email, pass) => {
-    alert('email: ' + email + ' password: ' + pass);
-  };
-  login = (email, pass) => {
-    alert('email: ' + email + ' password: ' + pass);
-  };
   render() {
     const {cadastroStore} = this.props;
 
     console.log(cadastroStore.cadastro);
 
     return (
-      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
+      <View style={{flex: 1}}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header}>
           <Left>
             <TouchableOpacity
@@ -50,6 +29,7 @@ class Cadastro extends Component {
             <Title>Cadastrar</Title>
           </Body>
         </Header>
+
         <View style={styles.container}>
           <View style={styles.top} />
           <View style={styles.middle}>
@@ -123,10 +103,8 @@ class Cadastro extends Component {
               </Form>
             </View>
           </View>
-
-          <View style={styles.bottom} />
         </View>
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
@@ -157,12 +135,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
-  bottom: {
-    position: 'relative',
-    height: '100%',
-    paddingRight: 12,
-    paddingLeft: 12,
-  },
   formArea: {
     alignSelf: 'center',
     width: '100%',
@@ -170,15 +142,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingBottom: 40,
     top: '5%',
-  },
-  formItems: {
-    marginTop: 15,
-    borderBottomColor: 'transparent',
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
   Input: {
     marginBottom: 5,
