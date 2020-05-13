@@ -10,8 +10,6 @@ class Cadastro extends Component {
   render() {
     const {cadastroStore} = this.props;
 
-    console.log(cadastroStore.cadastro);
-
     return (
       <View style={{flex: 1}}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header}>
