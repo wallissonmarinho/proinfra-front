@@ -1,5 +1,6 @@
 /* eslint-disable no-alert */
 import React, {Component} from 'react';
+import {inject, observer} from 'mobx-react';
 import {
   View,
   StyleSheet,
@@ -7,17 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {
-  Form,
-  Item,
-  Body,
-  Title,
-  Text,
-  CheckBox,
-  Left,
-  Button,
-  Header,
-} from 'native-base';
+import {Form, Body, Title, Text, Left, Button, Header} from 'native-base';
 import {Input} from '@ui-kitten/components';
 
 class Cadastro extends Component {
@@ -38,6 +29,10 @@ class Cadastro extends Component {
     alert('email: ' + email + ' password: ' + pass);
   };
   render() {
+    const {cadastroStore} = this.props;
+
+    console.log(cadastroStore.cadastro);
+
     return (
       <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header}>
@@ -61,27 +56,56 @@ class Cadastro extends Component {
             <View style={styles.formArea}>
               <Form>
                 <View style={styles.InputContainer}>
-                  <Input style={styles.Input} placeholder="Nome Completo" />
+                  <Input
+                    style={styles.Input}
+                    placeholder="Nome Completo"
+                    name="nomeCompleto"
+                    value={cadastroStore.cadastro.nomeCompleto}
+                    onChangeText={text => cadastroStore.handleChangeNome(text)}
+                  />
 
-                  <Input style={styles.Input} placeholder="CPF" />
+                  <Input
+                    style={styles.Input}
+                    placeholder="CPF"
+                    name="cpf"
+                    value={cadastroStore.cadastro.cpf}
+                    onChangeText={text => cadastroStore.handleChangeCPF(text)}
+                  />
 
                   <Input
                     style={styles.Input}
                     placeholder="Data de Nascimento"
+                    name="data_nascimento"
+                    value={cadastroStore.cadastro.data_nascimento}
+                    onChangeText={text =>
+                      cadastroStore.handleChangeDataNascimento(text)
+                    }
                   />
 
-                  <Input style={styles.Input} placeholder="Telefone" />
+                  <Input
+                    style={styles.Input}
+                    placeholder="Telefone"
+                    name="telefone"
+                    value={cadastroStore.cadastro.telefone}
+                    onChangeText={text =>
+                      cadastroStore.handleChangeTelefone(text)
+                    }
+                  />
 
                   <Input
                     style={styles.Input}
                     placeholder="Email"
-                    onChangeText={this.handleEmail}
+                    name="email"
+                    value={cadastroStore.cadastro.email}
+                    onChangeText={text => cadastroStore.handleChangeEmail(text)}
                   />
 
                   <Input
                     style={styles.Input}
                     placeholder="Senha"
-                    onChangeText={this.handlePassword}
+                    name="senha"
+                    value={cadastroStore.cadastro.senha}
+                    onChangeText={text => cadastroStore.handleChangeSenha(text)}
                   />
                 </View>
 
@@ -89,8 +113,10 @@ class Cadastro extends Component {
                   <Button
                     block
                     style={styles.mainBtn}
-                    // onPress = {() => this.login(this.state.email, this.state.password)}
-                    onPress={() => this.props.navigation.navigate('Login')}>
+                    onPress={() => {
+                      cadastroStore.cadastrar();
+                      this.props.navigation.navigate('Login');
+                    }}>
                     <Text style={styles.btnText}>Finalizar Cadastro</Text>
                   </Button>
                 </View>
@@ -174,4 +200,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Cadastro;
+export default inject('cadastroStore')(observer(Cadastro));
