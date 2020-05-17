@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
   View,
   StyleSheet,
-  KeyboardAvoidingView,
+  ScrollView,
   TouchableOpacity,
 } from 'react-native';
 import {
@@ -22,7 +22,7 @@ import {Input} from '@ui-kitten/components';
 class Login extends Component {
   render() {
     return (
-      <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header}>
           <Left>
             <TouchableOpacity
@@ -42,7 +42,10 @@ class Login extends Component {
           <View style={styles.top} />
 
           <View style={styles.middle}>
+          <View style={{borderRadius: 5}}>
             <Text style={styles.textContainer}>ProInfra</Text>
+            
+            <ScrollView style={{borderRadius: 5}}>
 
             <View style={styles.formArea}>
               <Form style={styles.mainForm}>
@@ -64,10 +67,11 @@ class Login extends Component {
                 </View>
               </Form>
             </View>
+            </ScrollView>
+            </View>
           </View>
-          <View style={styles.bottom} />
         </View>
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
@@ -97,12 +101,6 @@ const styles = StyleSheet.create({
     paddingLeft: 26.3,
     paddingRight: 26.3,
   },
-  bottom: {
-    position: 'relative',
-    height: '100%',
-    paddingRight: 12.7,
-    paddingLeft: 12.7,
-  },
   textContainer: {
     color: '#fff',
     fontSize: 24,
@@ -117,7 +115,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderRadius: 5,
     top: '20%',
-    paddingBottom: 40,
+    paddingBottom: 100,
   },
   formItems: {
     marginTop: 15,

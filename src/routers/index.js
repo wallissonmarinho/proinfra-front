@@ -61,7 +61,7 @@ function HomeTabs({navigation}) {
         name="ChamadosAbertos"
         component={ChamadosAbertos}
         options={{
-          tabBarLabel: 'ChamadosAbertos',
+          tabBarLabel: 'Efetuados',
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
               name="alert-box-outline"

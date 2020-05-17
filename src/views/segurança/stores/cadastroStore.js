@@ -3,12 +3,12 @@ import {CadastroService} from '../../../services';
 
 class CadastroStore {
   cadastro = {
-    cpf: '10471607495',
-    data_nascimento: '13081994',
-    email: 'matheuslucas.ssilva@gmail.com',
-    nomeCompleto: 'Matheus',
-    senha: 'qwe123',
-    telefone: '83987144447',
+    cpf: '',
+    data_nascimento: '',
+    email: '',
+    nomeCompleto: '',
+    senha: '',
+    telefone: '',
   };
 
   reset() {

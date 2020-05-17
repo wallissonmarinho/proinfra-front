@@ -1,17 +1,17 @@
 /* eslint-disable no-alert */
-import React, {Component} from 'react';
-import {inject, observer} from 'mobx-react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
+import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Form, Body, Title, Text, Left, Button, Header} from 'native-base';
-import {Input} from '@ui-kitten/components';
+import { Form, Body, Title, Text, Left, Button, Header } from 'native-base';
+import { Input } from '@ui-kitten/components';
 
 class Cadastro extends Component {
   render() {
-    const {cadastroStore} = this.props;
+    const { cadastroStore } = this.props;
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header}>
           <Left>
             <TouchableOpacity
@@ -31,75 +31,80 @@ class Cadastro extends Component {
         <View style={styles.container}>
           <View style={styles.top} />
           <View style={styles.middle}>
-            <View style={styles.formArea}>
-              <Form>
-                <View style={styles.InputContainer}>
-                  <Input
-                    style={styles.Input}
-                    placeholder="Nome Completo"
-                    name="nomeCompleto"
-                    value={cadastroStore.cadastro.nomeCompleto}
-                    onChangeText={text => cadastroStore.handleChangeNome(text)}
-                  />
+            <ScrollView>
+              <View style={styles.formArea}>
+                <Form>
+                  <View style={styles.InputContainer}>
+                    <Input
+                      style={styles.Input}
+                      placeholder="Nome Completo"
+                      name="nomeCompleto"
+                      value={cadastroStore.cadastro.nomeCompleto}
+                      onChangeText={text => cadastroStore.handleChangeNome(text)}
+                    />
 
-                  <Input
-                    style={styles.Input}
-                    placeholder="CPF"
-                    name="cpf"
-                    value={cadastroStore.cadastro.cpf}
-                    onChangeText={text => cadastroStore.handleChangeCPF(text)}
-                  />
+                    <Input
+                      style={styles.Input}
+                      placeholder="CPF"
+                      name="cpf"
+                      keyboardType="numeric"
+                      value={cadastroStore.cadastro.cpf}
+                      onChangeText={text => cadastroStore.handleChangeCPF(text)}
+                    />
 
-                  <Input
-                    style={styles.Input}
-                    placeholder="Data de Nascimento"
-                    name="data_nascimento"
-                    value={cadastroStore.cadastro.data_nascimento}
-                    onChangeText={text =>
-                      cadastroStore.handleChangeDataNascimento(text)
-                    }
-                  />
+                    <Input
+                      style={styles.Input}
+                      placeholder="Data de Nascimento"
+                      name="data_nascimento"
+                      keyboardType="numeric"
+                      value={cadastroStore.cadastro.data_nascimento}
+                      onChangeText={text =>
+                        cadastroStore.handleChangeDataNascimento(text)
+                      }
+                    />
 
-                  <Input
-                    style={styles.Input}
-                    placeholder="Telefone"
-                    name="telefone"
-                    value={cadastroStore.cadastro.telefone}
-                    onChangeText={text =>
-                      cadastroStore.handleChangeTelefone(text)
-                    }
-                  />
+                    <Input
+                      style={styles.Input}
+                      placeholder="Telefone"
+                      name="telefone"
+                      keyboardType="numeric"
+                      value={cadastroStore.cadastro.telefone}
+                      onChangeText={text =>
+                        cadastroStore.handleChangeTelefone(text)
+                      }
+                    />
 
-                  <Input
-                    style={styles.Input}
-                    placeholder="Email"
-                    name="email"
-                    value={cadastroStore.cadastro.email}
-                    onChangeText={text => cadastroStore.handleChangeEmail(text)}
-                  />
+                    <Input
+                      style={styles.Input}
+                      placeholder="Email"
+                      name="email"
+                      value={cadastroStore.cadastro.email}
+                      onChangeText={text => cadastroStore.handleChangeEmail(text)}
+                    />
 
-                  <Input
-                    style={styles.Input}
-                    placeholder="Senha"
-                    name="senha"
-                    value={cadastroStore.cadastro.senha}
-                    onChangeText={text => cadastroStore.handleChangeSenha(text)}
-                  />
-                </View>
+                    <Input
+                      style={styles.Input}
+                      placeholder="Senha"
+                      name="senha"
+                      value={cadastroStore.cadastro.senha}
+                      onChangeText={text => cadastroStore.handleChangeSenha(text)}
+                    />
+                  </View>
 
-                <View style={styles.Button}>
-                  <Button
-                    block
-                    style={styles.mainBtn}
-                    onPress={() => {
-                      cadastroStore.cadastrar();
-                      this.props.navigation.navigate('Login');
-                    }}>
-                    <Text style={styles.btnText}>Finalizar Cadastro</Text>
-                  </Button>
-                </View>
-              </Form>
-            </View>
+                  <View style={styles.Button}>
+                    <Button
+                      block
+                      style={styles.mainBtn}
+                      onPress={() => {
+                        cadastroStore.cadastrar();
+                        this.props.navigation.navigate('Login');
+                      }}>
+                      <Text style={styles.btnText}>Finalizar Cadastro</Text>
+                    </Button>
+                  </View>
+                </Form>
+              </View>
+            </ScrollView>
           </View>
         </View>
       </View>

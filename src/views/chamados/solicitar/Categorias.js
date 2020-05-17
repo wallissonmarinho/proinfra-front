@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, FlatList} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
 
 class Categorias extends React.Component {
@@ -18,9 +18,6 @@ class Categorias extends React.Component {
               <Title>Categorias</Title>
             </Body>
           </Header>
-          <View style={styles.countContainer}>
-            <Text>Count: {count}</Text>
-          </View>
           <TouchableOpacity
             style={styles.button}
             onPress={() => this.props.navigation.navigate('AbrirChamado')}>
