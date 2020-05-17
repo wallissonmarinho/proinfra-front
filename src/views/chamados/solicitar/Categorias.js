@@ -22,16 +22,16 @@ class Categorias extends React.Component {
             data={categoriaStore.categorias}
             renderItem={( {item, index}) => 
             <TouchableOpacity>
-              <View style={{flex: 1, flexDirection: 'row', backgroundColor: 'green', marginBottom: 5, borderRadius: 5}}>
-                <View style={{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
+              <View style={{flex: 1, flexDirection: 'row', backgroundColor: 'rgba(0,0,0, .2)', marginBottom: 15, borderRadius: 5}}>
+                <View style={{alignItems: 'center', flex: 1, justifyContent: 'center', height: 70}}>
                   <MaterialIcons
                     name={item.icone}
-                    size={70}
-                    color={'red'}
+                    size={40}
+                    color={'black'}
                   />
                 </View>
-                <View style={{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
-                  <Text>
+                <View style={{alignItems: 'flex-start', flex: 1, justifyContent: 'center', paddingRight: 100}}>
+                  <Text style={{ fontSize: 17 }}>
                     {item.nome}
                   </Text>
                 </View>
