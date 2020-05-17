@@ -1,15 +1,14 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
 import {StyleSheet, Text, TouchableOpacity, View, FlatList} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
+import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Categorias extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {count: 0};
-  }
 
   render() {
-    const {count} = this.state;
+    const { categoriaStore } = this.props;
+
     return (
       <Container>
         <View style={{flex: 1}}>
@@ -18,11 +17,29 @@ class Categorias extends React.Component {
               <Title>Categorias</Title>
             </Body>
           </Header>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.props.navigation.navigate('AbrirChamado')}>
-            <Text>Cadastro</Text>
-          </TouchableOpacity>
+          <View style={{flex: 1, padding: 20}}>
+            <FlatList
+            data={categoriaStore.categorias}
+            renderItem={( {item, index}) => 
+            <TouchableOpacity>
+              <View style={{flex: 1, flexDirection: 'row', backgroundColor: 'green', marginBottom: 5, borderRadius: 5}}>
+                <View style={{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
+                  <MaterialIcons
+                    name={item.icone}
+                    size={70}
+                    color={'red'}
+                  />
+                </View>
+                <View style={{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
+                  <Text>
+                    {item.nome}
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+            } />
+          </View>
+    
         </View>
       </Container>
     );
@@ -47,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Categorias;
+export default inject('categoriaStore')(observer(Categorias));

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Form, Body, Title, Text, Left, Button, Header } from 'native-base';
 import { Input } from '@ui-kitten/components';
 
@@ -16,7 +16,7 @@ class Cadastro extends Component {
           <Left>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('BemVindo')}>
-              <MaterialCommunityIcons
+              <MaterialIcons
                 name="arrow-left-bold-box-outline"
                 size={30}
                 color={'#fff'}
