@@ -22,15 +22,15 @@ class Categorias extends React.Component {
             data={categoriaStore.categorias}
             renderItem={( {item, index}) => 
             <TouchableOpacity>
-              <View style={{flex: 1, flexDirection: 'row', backgroundColor: 'rgba(0,0,0, .2)', marginBottom: 15, borderRadius: 5}}>
-                <View style={{alignItems: 'center', flex: 1, justifyContent: 'center', height: 70}}>
+              <View style={styles.viewTouch}>
+                <View style={styles.viewTouchIcon}>
                   <MaterialIcons
                     name={item.icone}
                     size={40}
                     color={'black'}
                   />
                 </View>
-                <View style={{alignItems: 'flex-start', flex: 1, justifyContent: 'center', paddingRight: 100}}>
+                <View style={styles.viewTouchText}>
                   <Text style={{ fontSize: 17 }}>
                     {item.nome}
                   </Text>
@@ -50,17 +50,24 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#2196f3',
   },
-  container: {
+  viewTouch: {
     flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0,0,0, .2)',
+    marginBottom: 15,
+    borderRadius: 5,
   },
-  button: {
+  viewTouchIcon : {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
+    flex: 1,
+    justifyContent: 'center',
+    height: 70,
   },
-  countContainer: {
-    alignItems: 'center',
-    padding: 10,
+  viewTouchText : {
+    alignItems: 'flex-start',
+    flex: 1,
+    justifyContent: 'center',
+    paddingRight: 100,
   },
 });
 
