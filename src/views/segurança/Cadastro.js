@@ -1,17 +1,17 @@
 /* eslint-disable no-alert */
-import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
-import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import React, {Component} from 'react';
+import {inject, observer} from 'mobx-react';
+import {View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Form, Body, Title, Text, Left, Button, Header } from 'native-base';
-import { Input } from '@ui-kitten/components';
+import {Form, Body, Title, Text, Left, Button, Header} from 'native-base';
+import {Input} from '@ui-kitten/components';
 
 class Cadastro extends Component {
   render() {
-    const { cadastroStore } = this.props;
+    const {cadastroStore, navigation} = this.props;
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.flex}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header}>
           <Left>
             <TouchableOpacity
@@ -40,7 +40,9 @@ class Cadastro extends Component {
                       placeholder="Nome Completo"
                       name="nomeCompleto"
                       value={cadastroStore.cadastro.nomeCompleto}
-                      onChangeText={text => cadastroStore.handleChangeNome(text)}
+                      onChangeText={text =>
+                        cadastroStore.handleChangeNome(text)
+                      }
                     />
 
                     <Input
@@ -79,7 +81,9 @@ class Cadastro extends Component {
                       placeholder="Email"
                       name="email"
                       value={cadastroStore.cadastro.email}
-                      onChangeText={text => cadastroStore.handleChangeEmail(text)}
+                      onChangeText={text =>
+                        cadastroStore.handleChangeEmail(text)
+                      }
                     />
 
                     <Input
@@ -87,7 +91,9 @@ class Cadastro extends Component {
                       placeholder="Senha"
                       name="senha"
                       value={cadastroStore.cadastro.senha}
-                      onChangeText={text => cadastroStore.handleChangeSenha(text)}
+                      onChangeText={text =>
+                        cadastroStore.handleChangeSenha(text)
+                      }
                     />
                   </View>
 
@@ -96,8 +102,7 @@ class Cadastro extends Component {
                       block
                       style={styles.mainBtn}
                       onPress={() => {
-                        cadastroStore.cadastrar();
-                        this.props.navigation.navigate('Login');
+                        cadastroStore.cadastrar(navigation);
                       }}>
                       <Text style={styles.btnText}>Finalizar Cadastro</Text>
                     </Button>
@@ -163,6 +168,9 @@ const styles = StyleSheet.create({
   btnText: {
     color: '#fff',
     fontSize: 12,
+  },
+  flex: {
+    flex: 1,
   },
 });
 
