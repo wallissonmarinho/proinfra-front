@@ -1,14 +1,15 @@
-import {decorate, observable, action, computed, toJS, runInAction} from 'mobx';
+import {decorate, observable, action} from 'mobx';
 import {CadastroService} from '../../../services';
+import {mensagem} from '../../../helpers';
 
 class CadastroStore {
   cadastro = {
-    cpf: '',
-    data_nascimento: '',
-    email: '',
-    nomeCompleto: '',
-    senha: '',
-    telefone: '',
+    cpf: null,
+    data_nascimento: null,
+    email: null,
+    nomeCompleto: null,
+    senha: null,
+    telefone: null,
   };
 
   reset() {
@@ -48,22 +49,21 @@ class CadastroStore {
     this.cadastro.telefone = text;
   }
 
-  async cadastrar() {
+  async cadastrar(navigation) {
     try {
       const result = await CadastroService.cadastrar(this.cadastro);
 
-      console.log(result);
-
-      if (!result) {
-        return console.warn('ERRO');
+      if (result.status === 422) {
+        mensagem.error('Usuário já cadastrado!');
       }
 
-      runInAction(() => {
-        this.teste = result;
-        console.warn(this.teste);
-      });
+      if (result.status === 200) {
+        navigation.navigate('Login');
+        mensagem.info('Usuário cadastrado com sucesso!');
+        this.reset();
+      }
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
   }
 }
