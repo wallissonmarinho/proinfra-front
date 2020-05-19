@@ -1,28 +1,15 @@
 import React, {Component} from 'react';
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
-import {
-  Form,
-  Item,
-  Body,
-  Text,
-  CheckBox,
-  Button,
-  Header,
-  Left,
-  Title,
-} from 'native-base';
+import {inject, observer} from 'mobx-react';
+import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import {Form, Item, Body, Text, Button, Header, Left, Title} from 'native-base';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Input} from '@ui-kitten/components';
 
 class Login extends Component {
   render() {
+    const {loginStore, navigation} = this.props;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.flex}>
         <Header androidStatusBarColor="#0d83e0" style={styles.header}>
           <Left>
             <TouchableOpacity
@@ -42,32 +29,47 @@ class Login extends Component {
           <View style={styles.top} />
 
           <View style={styles.middle}>
-          <View style={{borderRadius: 5}}>
-            <Text style={styles.textContainer}>ProInfra</Text>
-            
-            <ScrollView style={{borderRadius: 5}}>
+            <View style={styles.borderRadius}>
+              <Text style={styles.textContainer}>ProInfra</Text>
 
-            <View style={styles.formArea}>
-              <Form style={styles.mainForm}>
-                <Item style={styles.formItems}>
-                  <Input placeholder="Seu email" style={styles.Input} />
-                </Item>
+              <ScrollView style={styles.borderRadius}>
+                <View style={styles.formArea}>
+                  <Form style={styles.mainForm}>
+                    <Item style={styles.formItems}>
+                      <Input
+                        placeholder="Seu email"
+                        style={styles.Input}
+                        value={loginStore.login.username}
+                        onChangeText={text =>
+                          loginStore.handleChangeEmail(text)
+                        }
+                      />
+                    </Item>
 
-                <Item style={styles.formItems}>
-                  <Input placeholder="Senha" style={styles.Input} />
-                </Item>
+                    <Item style={styles.formItems}>
+                      <Input
+                        placeholder="Senha"
+                        style={styles.Input}
+                        value={loginStore.login.password}
+                        onChangeText={text =>
+                          loginStore.handleChangeSenha(text)
+                        }
+                      />
+                    </Item>
 
-                <View style={styles.Button}>
-                  <Button
-                    block
-                    style={styles.mainBtn}
-                    onPress={() => this.props.navigation.navigate('HomeTabs')}>
-                    <Text style={styles.btnText}>Entrar</Text>
-                  </Button>
+                    <View style={styles.Button}>
+                      <Button
+                        block
+                        style={styles.mainBtn}
+                        onPress={() => {
+                          loginStore.logar(navigation);
+                        }}>
+                        <Text style={styles.btnText}>Entrar</Text>
+                      </Button>
+                    </View>
+                  </Form>
                 </View>
-              </Form>
-            </View>
-            </ScrollView>
+              </ScrollView>
             </View>
           </View>
         </View>
@@ -137,6 +139,12 @@ const styles = StyleSheet.create({
     fontFamily: 'GoogleSans-Medium',
     fontSize: 12,
   },
+  flex: {
+    flex: 1,
+  },
+  borderRadius: {
+    borderRadius: 5,
+  },
 });
 
-export default Login;
+export default inject('loginStore')(observer(Login));
