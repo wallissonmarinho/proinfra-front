@@ -1,15 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {inject, observer} from 'mobx-react';
+import {StyleSheet, Text, TouchableOpacity, View, FlatList} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
+import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Ocorrencias extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {count: 0};
-  }
-
   render() {
-    const {count} = this.state;
+    const {ocorrenciasStore} = this.props;
+
     return (
       <Container>
         <View style={{flex: 1}}>
@@ -18,14 +16,29 @@ class Ocorrencias extends React.Component {
               <Title>Ocorrencias</Title>
             </Body>
           </Header>
-          <View style={styles.countContainer}>
-            <Text>Count: {count}</Text>
+          <View style={{flex: 1, padding: 20}}>
+            <FlatList
+              data={ocorrenciasStore.categorias}
+              renderItem={({item, index}) => (
+                <View>
+                  <View style={styles.viewTouch}>
+                    <View style={styles.viewTouchIcon}>
+                      <MaterialIcons
+                        name={item.icone}
+                        size={40}
+                        color={'black'}
+                      />
+                    </View>
+                    <View style={styles.viewTouchText}>
+                      <Text style={{fontSize: 17}}>Tipo de Chamado: {item.tipo}</Text>
+                      <Text style={{fontSize: 17}}>Data: {item.data}</Text>
+                      <Text style={{fontSize: 17}}>Status: {item.status}</Text>
+                    </View>
+                  </View>
+                </View>
+              )}
+            />
           </View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.props.navigation.navigate('ChamadosAbertos')}>
-            <Text>Cadastro</Text>
-          </TouchableOpacity>
         </View>
       </Container>
     );
@@ -36,18 +49,26 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#2196f3',
   },
-  container: {
+  viewTouch: {
     flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0,0,0, .2)',
+    marginBottom: 15,
+    borderRadius: 5,
   },
-  button: {
+  viewTouchIcon: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
+    flex: 1,
+    justifyContent: 'center',
   },
-  countContainer: {
-    alignItems: 'center',
-    padding: 10,
+  viewTouchText: {
+    alignItems: 'flex-start',
+    flex: 1,
+    justifyContent: 'center',
+    paddingRight: 30,
+    paddingBottom: 10,
+    paddingTop: 10,
   },
 });
 
-export default Ocorrencias;
+export default inject('ocorrenciasStore')(observer(Ocorrencias));

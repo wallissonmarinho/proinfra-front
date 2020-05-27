@@ -1,35 +1,34 @@
-import {decorate, observable, action, computed, toJS, runInAction} from 'mobx';
+import {decorate, observable} from 'mobx';
 
 class categoriaStore {
   categorias = [
     {
       id: 1,
-      nome: "Água / Esgoto",
-      icone: "water-pump",
+      nome: 'Água / Esgoto',
+      icone: 'water-pump',
     },
     {
       id: 3,
-      nome: "Energia",
-      icone: "flash",
+      nome: 'Energia',
+      icone: 'flash',
     },
     {
       id: 4,
-      nome: "Obstrução",
-      icone: "sign-caution",
+      nome: 'Obstrução',
+      icone: 'sign-caution',
     },
 
     {
       id: 5,
-      nome: "Vias",
-      icone: "road",
+      nome: 'Vias',
+      icone: 'road',
     },
     {
       id: 6,
-      nome: "Outros",
-      icone: "help-circle",
+      nome: 'Outros',
+      icone: 'help-circle',
     },
   ];
-
 }
 
 decorate(categoriaStore, {

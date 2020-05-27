@@ -1,13 +1,12 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import {StyleSheet, Text, TouchableOpacity, View, FlatList} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Categorias extends React.Component {
-
   render() {
-    const { categoriaStore } = this.props;
+    const {categoriaStore} = this.props;
 
     return (
       <Container>
@@ -19,27 +18,25 @@ class Categorias extends React.Component {
           </Header>
           <View style={{flex: 1, padding: 20}}>
             <FlatList
-            data={categoriaStore.categorias}
-            renderItem={( {item, index}) => 
-            <TouchableOpacity>
-              <View style={styles.viewTouch}>
-                <View style={styles.viewTouchIcon}>
-                  <MaterialIcons
-                    name={item.icone}
-                    size={40}
-                    color={'black'}
-                  />
-                </View>
-                <View style={styles.viewTouchText}>
-                  <Text style={{ fontSize: 17 }}>
-                    {item.nome}
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            } />
+              data={categoriaStore.categorias}
+              renderItem={({item, index}) => (
+                <TouchableOpacity>
+                  <View style={styles.viewTouch}>
+                    <View style={styles.viewTouchIcon}>
+                      <MaterialIcons
+                        name={item.icone}
+                        size={40}
+                        color={'black'}
+                      />
+                    </View>
+                    <View style={styles.viewTouchText}>
+                      <Text style={{fontSize: 17}}>{item.nome}</Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              )}
+            />
           </View>
-    
         </View>
       </Container>
     );
@@ -57,13 +54,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderRadius: 5,
   },
-  viewTouchIcon : {
+  viewTouchIcon: {
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
     height: 70,
   },
-  viewTouchText : {
+  viewTouchText: {
     alignItems: 'flex-start',
     flex: 1,
     justifyContent: 'center',
