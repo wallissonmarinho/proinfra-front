@@ -1,12 +1,29 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 
 class ChamadosAbertos extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {count: 0};
+    this.state = {
+      markers: [
+        {
+          title: 'hello',
+          coordinates: {
+            latitude: 37.78025,
+            longitude: -122.4324,
+          },
+        },
+        {
+          title: 'hello',
+          coordinates: {
+            latitude: 37.78825,
+            longitude: -122.4324,
+          },
+        },
+      ],
+    };
   }
 
   render() {
@@ -28,8 +45,14 @@ class ChamadosAbertos extends React.Component {
               longitude: -122.4324,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
-            }}
-          />
+            }}>
+            {this.state.markers.map(marker => (
+              <MapView.Marker
+                coordinate={marker.coordinates}
+                title={marker.title}
+              />
+            ))}
+          </MapView>
         </View>
       </Container>
     );
