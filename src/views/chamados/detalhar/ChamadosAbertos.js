@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 class ChamadosAbertos extends React.Component {
   constructor(props) {
@@ -18,14 +19,17 @@ class ChamadosAbertos extends React.Component {
               <Title>Chamados Abertos</Title>
             </Body>
           </Header>
-          <View style={styles.countContainer}>
-            <Text>Count: {count}</Text>
-          </View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.props.navigation.navigate('Perfil')}>
-            <Text>Chamados Abertos</Text>
-          </TouchableOpacity>
+          <MapView
+            style={{flex: 1}}
+            provider={PROVIDER_GOOGLE}
+            showsUserLocation
+            initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          />
         </View>
       </Container>
     );
@@ -47,6 +51,11 @@ const styles = StyleSheet.create({
   countContainer: {
     alignItems: 'center',
     padding: 10,
+  },
+  map: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   },
 });
 
