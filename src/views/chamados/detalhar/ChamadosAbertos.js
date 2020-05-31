@@ -1,33 +1,17 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import PropTypes from 'prop-types';
+import {inject, observer} from 'mobx-react';
+import {StyleSheet, View} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 class ChamadosAbertos extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      markers: [
-        {
-          title: 'hello',
-          coordinates: {
-            latitude: 37.78025,
-            longitude: -122.4324,
-          },
-        },
-        {
-          title: 'hello',
-          coordinates: {
-            latitude: 37.78825,
-            longitude: -122.4324,
-          },
-        },
-      ],
-    };
-  }
-
+  static propTypes = {
+    detalharStore: PropTypes.object.isRequired,
+  };
   render() {
-    const {count} = this.state;
+    const {detalharStore} = this.props;
+
     return (
       <Container>
         <View style={{flex: 1}}>
@@ -46,9 +30,12 @@ class ChamadosAbertos extends React.Component {
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
             }}>
-            {this.state.markers.map(marker => (
+            {detalharStore.markers.map((marker) => (
               <MapView.Marker
-                coordinate={marker.coordinates}
+                coordinate={{
+                  latitude: marker.latitude,
+                  longitude: marker.longitude,
+                }}
                 title={marker.title}
               />
             ))}
@@ -82,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChamadosAbertos;
+export default inject('detalharStore')(observer(ChamadosAbertos));

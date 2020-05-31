@@ -1,12 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {inject, observer} from 'mobx-react';
 import {StyleSheet, Text, TouchableOpacity, View, FlatList} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Ocorrencias extends React.Component {
+  static propTypes = {
+    detalharStore: PropTypes.object.isRequired,
+  };
   render() {
-    const {ocorrenciasStore} = this.props;
+    const {detalharStore} = this.props;
 
     return (
       <Container>
@@ -18,7 +22,7 @@ class Ocorrencias extends React.Component {
           </Header>
           <View style={{flex: 1, padding: 20}}>
             <FlatList
-              data={ocorrenciasStore.categorias}
+              data={detalharStore.categorias}
               renderItem={({item, index}) => (
                 <View>
                   <View style={styles.viewTouch}>
@@ -30,7 +34,9 @@ class Ocorrencias extends React.Component {
                       />
                     </View>
                     <View style={styles.viewTouchText}>
-                      <Text style={{fontSize: 17}}>Tipo de Chamado: {item.tipo}</Text>
+                      <Text style={{fontSize: 17}}>
+                        Tipo de Chamado: {item.tipo}
+                      </Text>
                       <Text style={{fontSize: 17}}>Data: {item.data}</Text>
                       <Text style={{fontSize: 17}}>Status: {item.status}</Text>
                     </View>
@@ -71,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default inject('ocorrenciasStore')(observer(Ocorrencias));
+export default inject('detalharStore')(observer(Ocorrencias));

@@ -1,6 +1,6 @@
 import {decorate, observable} from 'mobx';
 
-class ocorrenciasStore {
+class detalharStore {
   categorias = [
     {
       id: 1,
@@ -39,10 +39,34 @@ class ocorrenciasStore {
       icone: 'flash',
     },
   ];
+
+  markers = [
+    {
+      title: 'Energia',
+      latitude: 37.78025,
+      longitude: -122.4324,
+    },
+    {
+      title: 'Buraco',
+      latitude: 37.78825,
+      longitude: -122.4324,
+    },
+    {
+      title: 'Esgoto',
+      latitude: 37.79325,
+      longitude: -122.4384,
+    },
+    {
+      title: 'Cerveja',
+      latitude: 37.77825,
+      longitude: -122.439,
+    },
+  ];
 }
 
-decorate(ocorrenciasStore, {
+decorate(detalharStore, {
   categorias: observable,
+  markers: observable,
 });
 
-export default new ocorrenciasStore();
+export default new detalharStore();

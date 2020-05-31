@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 
 class AbrirChamado extends React.Component {
   constructor(props) {
@@ -9,7 +10,6 @@ class AbrirChamado extends React.Component {
   }
 
   render() {
-    const {count} = this.state;
     return (
       <Container>
         <View style={{flex: 1}}>
@@ -18,14 +18,17 @@ class AbrirChamado extends React.Component {
               <Title>Abrir Chamado</Title>
             </Body>
           </Header>
-          <View style={styles.countContainer}>
-            <Text>Count: {count}</Text>
-          </View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.props.navigation.navigate('Ocorrencias')}>
-            <Text>Cadastro</Text>
-          </TouchableOpacity>
+          <MapView
+            style={{flex: 1}}
+            provider={PROVIDER_GOOGLE}
+            showsUserLocation
+            initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          />
         </View>
       </Container>
     );

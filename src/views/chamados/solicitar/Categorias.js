@@ -20,7 +20,10 @@ class Categorias extends React.Component {
             <FlatList
               data={categoriaStore.categorias}
               renderItem={({item, index}) => (
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate('AbrirChamado')
+                  }>
                   <View style={styles.viewTouch}>
                     <View style={styles.viewTouchIcon}>
                       <MaterialIcons
