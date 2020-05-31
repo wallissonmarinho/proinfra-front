@@ -20,26 +20,28 @@ class ChamadosAbertos extends React.Component {
               <Title>Chamados Abertos</Title>
             </Body>
           </Header>
-          <MapView
-            style={{flex: 1}}
-            provider={PROVIDER_GOOGLE}
-            showsUserLocation
-            initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}>
-            {detalharStore.markers.map((marker) => (
-              <MapView.Marker
-                coordinate={{
-                  latitude: marker.latitude,
-                  longitude: marker.longitude,
-                }}
-                title={marker.title}
-              />
-            ))}
-          </MapView>
+          <View style={{flex: 1}}>
+            <MapView
+              style={{flex: 1}}
+              provider={PROVIDER_GOOGLE}
+              showsUserLocation
+              initialRegion={{
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              }}>
+              {detalharStore.markers.map((marker) => (
+                <MapView.Marker
+                  coordinate={{
+                    latitude: marker.latitude,
+                    longitude: marker.longitude,
+                  }}
+                  title={marker.title}
+                />
+              ))}
+            </MapView>
+          </View>
         </View>
       </Container>
     );
