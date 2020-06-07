@@ -23,11 +23,6 @@ class categoriaStore {
       nome: 'Vias',
       icone: 'road',
     },
-    {
-      id: 6,
-      nome: 'Outros',
-      icone: 'help-circle',
-    },
   ];
 }
 
