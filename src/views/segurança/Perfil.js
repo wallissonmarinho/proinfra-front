@@ -3,6 +3,7 @@ import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Header, Container, Body, Title, Button, Text} from 'native-base';
 import {Input} from '@ui-kitten/components';
+import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Perfil extends React.Component {
   state = {
@@ -36,14 +37,7 @@ class Perfil extends React.Component {
                   justifyContent: 'center',
                   borderRadius: 100,
                 }}>
-                <View
-                  style={{
-                    width: 140,
-                    height: 140,
-                    backgroundColor: 'red',
-                    borderRadius: 100,
-                  }}
-                />
+                <MaterialIcons color="#0d83e0" name="account-edit" size={140} />
               </View>
             </View>
             <View style={{flex: 0.8, marginTop: 100}}>
