@@ -97,6 +97,9 @@ class Perfil extends React.Component {
                       style={{
                         backgroundColor: 'red',
                         marginTop: 20,
+                        marginRight: 20,
+                        marginLeft: 20,
+                        borderRadius: 4,
                       }}>
                       <Text>Sair</Text>
                     </Button>
@@ -154,6 +157,9 @@ class Perfil extends React.Component {
                       style={{
                         backgroundColor: 'red',
                         marginTop: 20,
+                        marginRight: 20,
+                        marginLeft: 20,
+                        borderRadius: 4,
                       }}>
                       <Text>Sair</Text>
                     </Button>
@@ -203,6 +209,9 @@ class Perfil extends React.Component {
                       style={{
                         backgroundColor: 'red',
                         marginTop: 20,
+                        marginRight: 20,
+                        marginLeft: 20,
+                        borderRadius: 4,
                       }}>
                       <Text>Sair</Text>
                     </Button>
