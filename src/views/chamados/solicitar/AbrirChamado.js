@@ -1,14 +1,25 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  StyleSheet,
+  Modal,
+  TouchableOpacity,
+  View,
+  Text,
+} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class AbrirChamado extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {count: 0};
-  }
+  state = {
+    modalVisible: false,
+  };
+
+  handleOpen = () => this.setState({modalVisible: true});
+
+  handleClose = () => this.setState({modalVisible: false});
 
   render() {
     return (
@@ -36,6 +47,53 @@ class AbrirChamado extends React.Component {
                 longitudeDelta: 0.0421,
               }}
             />
+            <View
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+              }}>
+              <TouchableOpacity
+                onPress={this.handleOpen}
+                style={{
+                  backgroundColor: '#2196f3',
+                  zIndex: 1,
+                  marginTop: -80,
+                  width: 200,
+                  height: 50,
+                  borderRadius: 4,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: '#FFFF', fontSize: 16}}>Abri Chamado</Text>
+              </TouchableOpacity>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={this.state.modalVisible}
+                onRequestClose={() => {
+                  Alert.alert('Modal has been closed.');
+                }}>
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                    <Text style={styles.modalText}>Hello World!</Text>
+                    <TouchableOpacity
+                      onPress={this.handleClose}
+                      style={{
+                        backgroundColor: '#2196f3',
+                        width: 200,
+                        height: 50,
+                        borderRadius: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <Text style={{color: '#FFFF', fontSize: 16}}>Fechar</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Modal>
+            </View>
           </View>
         </View>
       </Container>
@@ -61,6 +119,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     shadowColor: '#000',
     zIndex: 1,
+  },
+  centeredView: {
+    flex: 1,
+    backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+  },
+  textStyle: {
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
   },
 });
 
