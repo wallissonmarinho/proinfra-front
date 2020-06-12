@@ -7,11 +7,13 @@ import {
   TouchableOpacity,
   View,
   Text,
+  PermissionsAndroid,
 } from 'react-native';
 import {Header, Container, Body, Title, Left} from 'native-base';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Input} from '@ui-kitten/components';
+import Geolocation from 'react-native-geolocation-service';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class AbrirChamado extends React.Component {
@@ -24,6 +26,33 @@ class AbrirChamado extends React.Component {
   handleClose = () => this.setState({modalVisible: false});
 
   render() {
+    const request_location_runtime_permission = async () => {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          {
+            title: 'Permissão de Localização',
+            message: 'A aplicação precisa da permissão de localização.',
+          },
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          Geolocation.getCurrentPosition(
+            (pos) => {
+              console.log(pos.coords.latitude, 'latitude');
+              console.log(pos.coords.longitude, 'longitude');
+            },
+            (error) => {
+              console.log(error);
+              Alert.alert('Houve um erro ao pegar a latitude e longitude.');
+            },
+          );
+        } else {
+          Alert.alert('Permissão de localização não concedida');
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
     return (
       <Container>
         <View style={{flex: 1}}>
@@ -44,7 +73,11 @@ class AbrirChamado extends React.Component {
           </Header>
           <View style={{flex: 1}}>
             <View style={{marginRight: 10, marginTop: 10}}>
-              <TouchableOpacity style={styles.buttonLocalizacao}>
+              <TouchableOpacity
+                onPress={() => {
+                  request_location_runtime_permission();
+                }}
+                style={styles.buttonLocalizacao}>
                 <Icon name="my-location" color={'#fff'} size={30} />
               </TouchableOpacity>
             </View>
