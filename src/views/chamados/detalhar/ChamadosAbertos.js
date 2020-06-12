@@ -31,8 +31,9 @@ class ChamadosAbertos extends React.Component {
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               }}>
-              {detalharStore.markers.map((marker) => (
+              {detalharStore.markers.map((marker, index) => (
                 <MapView.Marker
+                  key={index}
                   coordinate={{
                     latitude: marker.latitude,
                     longitude: marker.longitude,

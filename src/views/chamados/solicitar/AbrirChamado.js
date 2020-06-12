@@ -8,9 +8,11 @@ import {
   View,
   Text,
 } from 'react-native';
-import {Header, Container, Body, Title} from 'native-base';
+import {Header, Container, Body, Title, Left} from 'native-base';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {Input} from '@ui-kitten/components';
+import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class AbrirChamado extends React.Component {
   state = {
@@ -26,6 +28,16 @@ class AbrirChamado extends React.Component {
       <Container>
         <View style={{flex: 1}}>
           <Header androidStatusBarColor="#0d83e0" style={styles.header}>
+            <Left>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('Categorias')}>
+                <MaterialIcons
+                  name="arrow-left-bold-box-outline"
+                  size={30}
+                  color={'#fff'}
+                />
+              </TouchableOpacity>
+            </Left>
             <Body>
               <Title>Abrir Chamado</Title>
             </Body>
@@ -76,9 +88,30 @@ class AbrirChamado extends React.Component {
                 }}>
                 <View style={styles.centeredView}>
                   <View style={styles.modalView}>
-                    <Text style={styles.modalText}>Hello World!</Text>
+                    <View
+                      style={{
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                        width: 300,
+                        paddingBottom: 20,
+                      }}>
+                      <Text>Hello World!</Text>
+                      <TouchableOpacity onPress={this.handleClose}>
+                        <MaterialIcons
+                          name="close-box-outline"
+                          size={30}
+                          color={'red'}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                    <Input
+                      style={{paddingBottom: 20}}
+                      multiline={true}
+                      textStyle={{minHeight: 64}}
+                      placeholder="Descreva..."
+                    />
                     <TouchableOpacity
-                      onPress={this.handleClose}
                       style={{
                         backgroundColor: '#2196f3',
                         width: 200,
@@ -88,7 +121,7 @@ class AbrirChamado extends React.Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}>
-                      <Text style={{color: '#FFFF', fontSize: 16}}>Fechar</Text>
+                      <Text style={{color: '#FFFF', fontSize: 16}}>Salvar</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
