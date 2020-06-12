@@ -21,6 +21,7 @@ class Categorias extends React.Component {
               data={categoriaStore.categorias}
               renderItem={({item, index}) => (
                 <TouchableOpacity
+                  key={index}
                   onPress={() =>
                     this.props.navigation.navigate('AbrirChamado')
                   }>
