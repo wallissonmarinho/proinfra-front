@@ -44,24 +44,24 @@ class detalharStore {
 
   markers = [
     {
-      title: 'Energia',
-      latitude: 37.78025,
-      longitude: -122.4324,
+      title: '0',
+      latitude: -7.1147119,
+      longitude: -34.8492043,
     },
     {
-      title: 'Buraco',
-      latitude: 37.78825,
-      longitude: -122.4324,
+      title: '1',
+      latitude: -7.1156274,
+      longitude: -34.8452883,
     },
     {
-      title: 'Esgoto',
-      latitude: 37.79325,
-      longitude: -122.4384,
+      title: '2',
+      latitude: -7.1187574,
+      longitude: -34.8406427,
     },
     {
-      title: 'Cerveja',
-      latitude: 37.77825,
-      longitude: -122.439,
+      title: '3',
+      latitude: -7.1218661,
+      longitude: -34.8442476,
     },
   ];
 

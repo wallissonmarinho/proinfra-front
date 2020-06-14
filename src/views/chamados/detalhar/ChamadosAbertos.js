@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import {inject, observer} from 'mobx-react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import RoadImg from '../../../assets/road.png';
 
 class ChamadosAbertos extends React.Component {
   static propTypes = {
@@ -44,16 +45,7 @@ class ChamadosAbertos extends React.Component {
                 latitudeDelta: 0.015,
                 longitudeDelta: 0.015,
               }}>
-              {detalharStore.markers.map((marker, index) => (
-                <MapView.Marker
-                  key={index}
-                  coordinate={{
-                    latitude: marker.latitude,
-                    longitude: marker.longitude,
-                  }}
-                  title={marker.title}
-                />
-              ))}
+              <Markers detalharStore={detalharStore} />
             </MapView>
           </View>
         </View>
@@ -61,6 +53,52 @@ class ChamadosAbertos extends React.Component {
     );
   }
 }
+
+const Markers = ({detalharStore}) =>
+  detalharStore.markers.map((marker, index) => (
+    <View key={index}>
+      {marker.title === '0' && (
+        <Marker
+          coordinate={{
+            latitude: marker.latitude,
+            longitude: marker.longitude,
+          }}
+          title={'Agua / Esgoto'}
+          icon={require('../../../assets/water-pump.png')}
+        />
+      )}
+      {marker.title === '1' && (
+        <Marker
+          coordinate={{
+            latitude: marker.latitude,
+            longitude: marker.longitude,
+          }}
+          title={'Energia'}
+          icon={require('../../../assets/flash.png')}
+        />
+      )}
+      {marker.title === '2' && (
+        <Marker
+          coordinate={{
+            latitude: marker.latitude,
+            longitude: marker.longitude,
+          }}
+          title={'Obstrução'}
+          icon={require('../../../assets/sign-caution.png')}
+        />
+      )}
+      {marker.title === '3' && (
+        <Marker
+          coordinate={{
+            latitude: marker.latitude,
+            longitude: marker.longitude,
+          }}
+          title={'Vias'}
+          icon={require('../../../assets/road.png')}
+        />
+      )}
+    </View>
+  ));
 
 const styles = StyleSheet.create({
   header: {
