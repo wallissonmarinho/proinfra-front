@@ -1,6 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {inject, observer} from 'mobx-react';
+import PropTypes from 'prop-types';
+
 import {
   Alert,
   StyleSheet,
@@ -16,9 +18,17 @@ import {Input} from '@ui-kitten/components';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class AbrirChamado extends React.Component {
+  static propTypes = {
+    categoriaStore: PropTypes.object,
+  };
+
   state = {
     modalVisible: false,
   };
+
+  componentDidMount() {
+    this.props.categoriaStore.localizacao();
+  }
 
   handleOpen = () => this.setState({modalVisible: true});
 
@@ -57,11 +67,11 @@ class AbrirChamado extends React.Component {
               style={{flex: 1, marginTop: -10}}
               provider={PROVIDER_GOOGLE}
               showsUserLocation
-              initialRegion={{
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
+              region={{
+                latitude: categoriaStore.mapa.latitude || -7.1183954,
+                longitude: categoriaStore.mapa.longitude || -34.8482065,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.015,
               }}
             />
             <View

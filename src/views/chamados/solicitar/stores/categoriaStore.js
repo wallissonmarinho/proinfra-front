@@ -27,6 +27,11 @@ class categoriaStore {
     },
   ];
 
+  mapa = {
+    latitude: null,
+    longitude: null,
+  };
+
   async localizacao() {
     try {
       const granted = await PermissionsAndroid.request(
@@ -39,8 +44,8 @@ class categoriaStore {
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         Geolocation.getCurrentPosition(
           (pos) => {
-            console.log(pos.coords.latitude, 'latitude');
-            console.log(pos.coords.longitude, 'longitude');
+            this.mapa.latitude = pos.coords.latitude;
+            this.mapa.longitude = pos.coords.longitude;
           },
           (error) => {
             console.log(error);
@@ -58,6 +63,7 @@ class categoriaStore {
 
 decorate(categoriaStore, {
   categorias: observable,
+  mapa: observable,
   localizacao: action.bound,
 });
 

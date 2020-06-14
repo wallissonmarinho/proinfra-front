@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {inject, observer} from 'mobx-react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class ChamadosAbertos extends React.Component {
   static propTypes = {
     detalharStore: PropTypes.object.isRequired,
   };
+
+  componentDidMount() {
+    this.props.detalharStore.localizacao();
+  }
+
   render() {
     const {detalharStore} = this.props;
 
@@ -21,15 +27,22 @@ class ChamadosAbertos extends React.Component {
             </Body>
           </Header>
           <View style={{flex: 1}}>
+            <View style={{marginRight: 10, marginTop: 10}}>
+              <TouchableOpacity
+                onPress={() => detalharStore.localizacao()}
+                style={styles.buttonLocalizacao}>
+                <Icon name="my-location" color={'#fff'} size={30} />
+              </TouchableOpacity>
+            </View>
             <MapView
-              style={{flex: 1}}
+              style={{flex: 1, marginTop: -10}}
               provider={PROVIDER_GOOGLE}
               showsUserLocation
-              initialRegion={{
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
+              region={{
+                latitude: detalharStore.mapa.latitude || -7.1183954,
+                longitude: detalharStore.mapa.longitude || -34.8482065,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.015,
               }}>
               {detalharStore.markers.map((marker, index) => (
                 <MapView.Marker
@@ -55,6 +68,18 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+  },
+  buttonLocalizacao: {
+    backgroundColor: '#e74c3c',
+    borderRadius: 150,
+    marginBottom: -50,
+    width: 50,
+    height: 50,
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    zIndex: 1,
   },
   button: {
     alignItems: 'center',

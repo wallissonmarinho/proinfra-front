@@ -40,7 +40,7 @@ class Cadastro extends Component {
                       placeholder="Nome Completo"
                       name="nomeCompleto"
                       value={cadastroStore.cadastro.nomeCompleto}
-                      onChangeText={text =>
+                      onChangeText={(text) =>
                         cadastroStore.handleChangeNome(text)
                       }
                     />
@@ -51,7 +51,9 @@ class Cadastro extends Component {
                       name="cpf"
                       keyboardType="numeric"
                       value={cadastroStore.cadastro.cpf}
-                      onChangeText={text => cadastroStore.handleChangeCPF(text)}
+                      onChangeText={(text) =>
+                        cadastroStore.handleChangeCPF(text)
+                      }
                     />
 
                     <Input
@@ -60,7 +62,7 @@ class Cadastro extends Component {
                       name="data_nascimento"
                       keyboardType="numeric"
                       value={cadastroStore.cadastro.data_nascimento}
-                      onChangeText={text =>
+                      onChangeText={(text) =>
                         cadastroStore.handleChangeDataNascimento(text)
                       }
                     />
@@ -71,7 +73,7 @@ class Cadastro extends Component {
                       name="telefone"
                       keyboardType="numeric"
                       value={cadastroStore.cadastro.telefone}
-                      onChangeText={text =>
+                      onChangeText={(text) =>
                         cadastroStore.handleChangeTelefone(text)
                       }
                     />
@@ -81,7 +83,7 @@ class Cadastro extends Component {
                       placeholder="Email"
                       name="email"
                       value={cadastroStore.cadastro.email}
-                      onChangeText={text =>
+                      onChangeText={(text) =>
                         cadastroStore.handleChangeEmail(text)
                       }
                     />
@@ -91,7 +93,7 @@ class Cadastro extends Component {
                       placeholder="Senha"
                       name="senha"
                       value={cadastroStore.cadastro.senha}
-                      onChangeText={text =>
+                      onChangeText={(text) =>
                         cadastroStore.handleChangeSenha(text)
                       }
                     />
