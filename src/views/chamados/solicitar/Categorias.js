@@ -19,11 +19,13 @@ class Categorias extends React.Component {
           <View style={{flex: 1, padding: 20}}>
             <FlatList
               data={categoriaStore.categorias}
-              renderItem={({item, index}) => (
+              renderItem={({item}) => (
                 <TouchableOpacity
-                  key={index}
+                  key={item.id}
                   onPress={() =>
-                    this.props.navigation.navigate('AbrirChamado')
+                    this.props.navigation.navigate('AbrirChamado', {
+                      id: item.id,
+                    })
                   }>
                   <View style={styles.viewTouch}>
                     <View style={styles.viewTouchIcon}>

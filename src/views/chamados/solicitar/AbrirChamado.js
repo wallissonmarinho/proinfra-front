@@ -18,6 +18,10 @@ import {Input} from '@ui-kitten/components';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class AbrirChamado extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   static propTypes = {
     categoriaStore: PropTypes.object,
   };
@@ -36,6 +40,7 @@ class AbrirChamado extends React.Component {
 
   render() {
     const {categoriaStore} = this.props;
+    const {id} = this.props.route.params;
 
     return (
       <Container>
@@ -108,10 +113,13 @@ class AbrirChamado extends React.Component {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         flexDirection: 'row',
-                        width: 300,
+                        width: 200,
                         paddingBottom: 20,
                       }}>
-                      <Text>Hello World!</Text>
+                      {id === 1 && <Text>Água / Esgoto!</Text>}
+                      {id === 2 && <Text>Energia!</Text>}
+                      {id === 3 && <Text>Obstrução!</Text>}
+                      {id === 4 && <Text>Vias!</Text>}
                       <TouchableOpacity onPress={this.handleClose}>
                         <MaterialIcons
                           name="close-box-outline"
@@ -121,7 +129,7 @@ class AbrirChamado extends React.Component {
                       </TouchableOpacity>
                     </View>
                     <Input
-                      style={{paddingBottom: 20}}
+                      style={{paddingBottom: 20, width: '100%'}}
                       multiline={true}
                       textStyle={{minHeight: 64}}
                       placeholder="Descreva..."

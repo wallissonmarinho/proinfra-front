@@ -10,18 +10,18 @@ class categoriaStore {
       icone: 'water-pump',
     },
     {
-      id: 3,
+      id: 2,
       nome: 'Energia',
       icone: 'flash',
     },
     {
-      id: 4,
+      id: 3,
       nome: 'Obstrução',
       icone: 'sign-caution',
     },
 
     {
-      id: 5,
+      id: 4,
       nome: 'Vias',
       icone: 'road',
     },
