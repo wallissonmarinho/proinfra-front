@@ -1,6 +1,7 @@
 import {decorate, observable, action} from 'mobx';
 import {CadastroService} from '../../../services';
 import {mensagem} from '../../../helpers';
+import {mask, unMask} from 'remask';
 
 class CadastroStore {
   cadastro = {
@@ -30,11 +31,11 @@ class CadastroStore {
   }
 
   handleChangeCPF(text) {
-    this.cadastro.cpf = text;
+    this.cadastro.cpf = mask(text, ['999.999.999-99']);
   }
 
   handleChangeDataNascimento(text) {
-    this.cadastro.data_nascimento = text;
+    this.cadastro.data_nascimento = mask(text, ['99/99/9999']);
   }
 
   handleChangeEmail(text) {
@@ -46,12 +47,21 @@ class CadastroStore {
   }
 
   handleChangeTelefone(text) {
-    this.cadastro.telefone = text;
+    this.cadastro.telefone = mask(text, ['(99) 9 9999-9999']);
   }
 
   async cadastrar(navigation) {
+    const cadastrar = {
+      cpf: unMask(this.cadastro.cpf),
+      data_nascimento: unMask(this.cadastro.data_nascimento),
+      email: this.cadastro.email,
+      nomeCompleto: this.cadastro.nomeCompleto,
+      senha: this.cadastro.senha,
+      telefone: unMask(this.cadastro.telefone),
+    };
+
     try {
-      const result = await CadastroService.cadastrar(this.cadastro);
+      const result = await CadastroService.cadastrar(cadastrar);
 
       if (result.status === 422) {
         mensagem.error('Usuário já cadastrado!');

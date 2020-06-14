@@ -5,6 +5,7 @@ import {View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Form, Body, Title, Text, Left, Button, Header} from 'native-base';
 import {Input} from '@ui-kitten/components';
+import {mask, unMask} from 'remask';
 
 class Cadastro extends Component {
   render() {
