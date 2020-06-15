@@ -5,7 +5,7 @@ import {Form, Item, Body, Text, Button, Header, Left, Title} from 'native-base';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Input} from '@ui-kitten/components';
 
-class Login extends Component {
+class Esqueci extends Component {
   render() {
     const {loginStore, navigation} = this.props;
     return (
@@ -30,7 +30,7 @@ class Login extends Component {
 
           <View style={styles.middle}>
             <View style={styles.borderRadius}>
-              <Text style={styles.textContainer}>ProInfra</Text>
+              <Text style={styles.textContainer}>Nova senha</Text>
 
               <ScrollView style={styles.borderRadius}>
                 <View style={styles.formArea}>
@@ -46,17 +46,6 @@ class Login extends Component {
                       />
                     </Item>
 
-                    <Item style={styles.formItems}>
-                      <Input
-                        placeholder="Senha"
-                        style={styles.Input}
-                        value={loginStore.login.password}
-                        onChangeText={(text) =>
-                          loginStore.handleChangeSenha(text)
-                        }
-                      />
-                    </Item>
-
                     <View style={styles.Button}>
                       <Button
                         block
@@ -64,17 +53,8 @@ class Login extends Component {
                         onPress={() => {
                           loginStore.logar(navigation);
                         }}>
-                        <Text style={styles.btnText}>Entrar</Text>
+                        <Text style={styles.btnText}>Enviar</Text>
                       </Button>
-                      <TouchableOpacity
-                        style={{paddingTop: 15}}
-                        onPress={() =>
-                          this.props.navigation.navigate('Esqueci')
-                        }>
-                        <Text style={{color: 'black'}}>
-                          Esqueci minha senha
-                        </Text>
-                      </TouchableOpacity>
                     </View>
                   </Form>
                 </View>
@@ -129,7 +109,7 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   formItems: {
-    marginTop: 15,
+    marginTop: 50,
     borderBottomColor: 'transparent',
   },
   Input: {
@@ -156,4 +136,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default inject('loginStore')(observer(Login));
+export default inject('loginStore')(observer(Esqueci));
