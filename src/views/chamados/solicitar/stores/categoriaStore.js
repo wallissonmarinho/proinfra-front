@@ -1,36 +1,32 @@
 import {decorate, observable, action} from 'mobx';
 import {Alert, PermissionsAndroid} from 'react-native';
+import {ChamadoService} from '../../../../services';
+import {mensagem} from '../../../../helpers';
 import Geolocation from 'react-native-geolocation-service';
 
 class categoriaStore {
-  categorias = [
-    {
-      id: 1,
-      nome: 'Água / Esgoto',
-      icone: 'water-pump',
-    },
-    {
-      id: 2,
-      nome: 'Energia',
-      icone: 'flash',
-    },
-    {
-      id: 3,
-      nome: 'Obstrução',
-      icone: 'sign-caution',
-    },
-
-    {
-      id: 4,
-      nome: 'Vias',
-      icone: 'road',
-    },
-  ];
+  categorias = [];
 
   mapa = {
     latitude: null,
     longitude: null,
   };
+
+  async obterListaCategorias() {
+    try {
+      const result = await ChamadoService.listarCategoriasAtivas();
+
+      if (result.status !== 200) {
+        mensagem.info('Erro ao obter a lista de categorias!');
+      }
+
+      if (result.status === 200) {
+        this.categorias = result.data;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   async localizacao() {
     try {
@@ -65,6 +61,7 @@ decorate(categoriaStore, {
   categorias: observable,
   mapa: observable,
   localizacao: action.bound,
+  obterListaCategorias: action.bound,
 });
 
 export default new categoriaStore();

@@ -5,6 +5,11 @@ import {Header, Container, Body, Title} from 'native-base';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Categorias extends React.Component {
+  componentDidMount() {
+    const {categoriaStore} = this.props;
+    categoriaStore.obterListaCategorias();
+  }
+
   render() {
     const {categoriaStore} = this.props;
 
@@ -19,28 +24,28 @@ class Categorias extends React.Component {
           <View style={{flex: 1, padding: 20}}>
             <FlatList
               data={categoriaStore.categorias}
-              renderItem={({item}) => (
+              renderItem={({item, index}) => (
                 <TouchableOpacity
-                  key={item.id}
                   onPress={() =>
                     this.props.navigation.navigate('AbrirChamado', {
-                      id: item.id,
+                      id: item.cod_categoria,
                     })
                   }>
                   <View style={styles.viewTouch}>
                     <View style={styles.viewTouchIcon}>
                       <MaterialIcons
-                        name={item.icone}
+                        name={item.nome_imagem_categoria}
                         size={40}
                         color={'black'}
                       />
                     </View>
                     <View style={styles.viewTouchText}>
-                      <Text style={{fontSize: 17}}>{item.nome}</Text>
+                      <Text style={{fontSize: 17}}>{item.nome_categoria}</Text>
                     </View>
                   </View>
                 </TouchableOpacity>
               )}
+              keyExtractor={(item, index) => index.toString()}
             />
           </View>
         </View>
