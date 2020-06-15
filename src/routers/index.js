@@ -19,6 +19,7 @@ import Perfil from '../views/segurança/Perfil';
 import BemVindo from '../views/segurança/BemVindo';
 import Cadastro from '../views/segurança/Cadastro';
 import Login from '../views/segurança/Login';
+import Esqueci from '../views/segurança/Esqueci';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -120,6 +121,11 @@ function App({navigation}) {
         options={{headerShown: false}}
         name="Login"
         component={Login}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="Esqueci"
+        component={Esqueci}
       />
       <Stack.Screen
         options={{headerShown: false}}
