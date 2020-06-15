@@ -39,8 +39,8 @@ class Login extends Component {
                       <Input
                         placeholder="Seu email"
                         style={styles.Input}
-                        value={loginStore.login.username}
-                        onChangeText={text =>
+                        value={loginStore.login.email}
+                        onChangeText={(text) =>
                           loginStore.handleChangeEmail(text)
                         }
                       />
@@ -50,8 +50,8 @@ class Login extends Component {
                       <Input
                         placeholder="Senha"
                         style={styles.Input}
-                        value={loginStore.login.password}
-                        onChangeText={text =>
+                        value={loginStore.login.senha}
+                        onChangeText={(text) =>
                           loginStore.handleChangeSenha(text)
                         }
                       />

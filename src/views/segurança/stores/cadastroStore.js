@@ -5,29 +5,27 @@ import {mask, unMask} from 'remask';
 
 class CadastroStore {
   cadastro = {
+    nome: null,
     cpf: null,
     data_nascimento: null,
     email: null,
-    nomeCompleto: null,
     senha: null,
     telefone: null,
   };
 
   reset() {
     this.cadastro = {
+      nome: null,
       cpf: null,
       data_nascimento: null,
       email: null,
-      nomeCompleto: null,
       senha: null,
       telefone: null,
     };
   }
 
-  teste = {};
-
   handleChangeNome(text) {
-    this.cadastro.nomeCompleto = text;
+    this.cadastro.nome = text;
   }
 
   handleChangeCPF(text) {
@@ -38,6 +36,10 @@ class CadastroStore {
     this.cadastro.data_nascimento = mask(text, ['99/99/9999']);
   }
 
+  handleChangeTelefone(text) {
+    this.cadastro.telefone = mask(text, ['(99) 9 9999-9999']);
+  }
+
   handleChangeEmail(text) {
     this.cadastro.email = text;
   }
@@ -46,28 +48,23 @@ class CadastroStore {
     this.cadastro.senha = text;
   }
 
-  handleChangeTelefone(text) {
-    this.cadastro.telefone = mask(text, ['(99) 9 9999-9999']);
-  }
-
   async cadastrar(navigation) {
-    const cadastrar = {
-      cpf: unMask(this.cadastro.cpf),
-      data_nascimento: unMask(this.cadastro.data_nascimento),
-      email: this.cadastro.email,
-      nomeCompleto: this.cadastro.nomeCompleto,
-      senha: this.cadastro.senha,
-      telefone: unMask(this.cadastro.telefone),
-    };
-
     try {
-      const result = await CadastroService.cadastrar(cadastrar);
+      this.cadastro = {
+        ...this.cadastro,
+        cpf: unMask(this.cadastro.cpf),
+        data_nascimento: unMask(this.cadastro.data_nascimento),
+        telefone: unMask(this.cadastro.telefone),
+      };
 
-      if (result.status === 422) {
+      const result = await CadastroService.cadastrar(this.cadastro);
+
+      if (result.status === 400) {
         mensagem.error('Usuário já cadastrado!');
+        this.reset();
       }
 
-      if (result.status === 200) {
+      if (result.status === 201) {
         navigation.navigate('Login');
         mensagem.info('Usuário cadastrado com sucesso!');
         this.reset();

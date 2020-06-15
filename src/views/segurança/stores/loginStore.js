@@ -4,28 +4,30 @@ import {mensagem} from '../../../helpers';
 
 class LoginStore {
   login = {
-    username: null,
-    password: null,
+    email: null,
+    senha: null,
   };
 
   reset() {
     this.login = {
-      username: null,
-      password: null,
+      email: null,
+      senha: null,
     };
   }
 
   handleChangeEmail(text) {
-    this.login.username = text;
+    this.login.email = text;
   }
 
   handleChangeSenha(text) {
-    this.login.password = text;
+    this.login.senha = text;
   }
 
   async logar(navigation) {
     try {
       const result = await LoginService.login(this.login);
+
+      console.log(result.headers.authorization);
 
       if (result.status === 401) {
         mensagem.error('Usuário e/ou senha incorreto(s)!');

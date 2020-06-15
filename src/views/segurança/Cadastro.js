@@ -40,7 +40,7 @@ class Cadastro extends Component {
                       style={styles.Input}
                       placeholder="Nome Completo"
                       name="nomeCompleto"
-                      value={cadastroStore.cadastro.nomeCompleto}
+                      value={cadastroStore.cadastro.nome}
                       onChangeText={(text) =>
                         cadastroStore.handleChangeNome(text)
                       }
