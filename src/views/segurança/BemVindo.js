@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, ImageBackground} from 'react-native';
+import {View, StyleSheet, ImageBackground, Image} from 'react-native';
 import {Text, Container} from 'native-base';
 import {Button} from '@ui-kitten/components';
 import backgroundImage from '../../assets/wallpaper.jpg';
+import baImage from '../../assets/Logo_ProInfra.png';
 
 class Login extends Component {
   render() {
@@ -14,10 +15,10 @@ class Login extends Component {
           style={styles.picture}
           source={backgroundImage}>
           <View style={styles.middle}>
-            <Text style={styles.textContainer}>ProInfra</Text>
+            <Image style={styles.logo} source={baImage} />
 
             <Text style={styles.textContainer}>
-              Descrição slogan do serviço de infra strutura
+              Quer relatar algum problema? Temos a solução
             </Text>
 
             <View style={styles.formArea}>
@@ -62,17 +63,23 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     color: '#fff',
-    fontSize: 24,
-    marginBottom: 30,
+    fontSize: 22,
     position: 'relative',
-    top: '35%',
+    top: '5%',
+    alignSelf: 'center',
+  },
+  logo: {
+    width: 300,
+    height: 300,
+    position: 'relative',
+    top: '5%',
     alignSelf: 'center',
   },
   formArea: {
     alignSelf: 'center',
     width: '100%',
     borderRadius: 5,
-    top: '50%',
+    top: '20%',
     paddingBottom: 40,
   },
   Button: {
