@@ -3,7 +3,7 @@ import {View, StyleSheet, ImageBackground, Image} from 'react-native';
 import {Text, Container} from 'native-base';
 import {Button} from '@ui-kitten/components';
 import backgroundImage from '../../assets/wallpaper.jpg';
-import baImage from '../../assets/Logo_ProInfra.png';
+import logoImage from '../../assets/Logo_ProInfra.png';
 
 class Login extends Component {
   render() {
@@ -15,7 +15,7 @@ class Login extends Component {
           style={styles.picture}
           source={backgroundImage}>
           <View style={styles.middle}>
-            <Image style={styles.logo} source={baImage} />
+            <Image style={styles.logo} source={logoImage} />
 
             <Text style={styles.textContainer}>
               Quer relatar algum problema? Temos a solução
