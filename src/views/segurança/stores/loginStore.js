@@ -1,5 +1,5 @@
 import {decorate, observable, action} from 'mobx';
-import {LoginService} from '../../../services';
+import {LoginService, Token} from '../../../services';
 import {mensagem} from '../../../helpers';
 
 class LoginStore {
@@ -27,13 +27,17 @@ class LoginStore {
     try {
       const result = await LoginService.login(this.login);
 
-      console.log(result.headers.authorization);
+      if (!result.headers.authorization || result.status === 404) {
+        mensagem.error('Erro ao efetuar o login! Por favor, tente novamente.');
+      }
+
+      await Token.salvarToken(result.headers.authorization);
 
       if (result.status === 401) {
         mensagem.error('Usuário e/ou senha incorreto(s)!');
       }
 
-      if (result.status === 403 || result.status === 404) {
+      if (result.status === 403) {
         mensagem.error('Usuário não encontrado!');
       }
 
