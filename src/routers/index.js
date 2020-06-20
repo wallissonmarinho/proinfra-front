@@ -9,11 +9,11 @@ import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
 
 import 'react-native-gesture-handler';
 
-import AbrirChamado from '../views/chamados/solicitar/AbrirChamado';
-import Categorias from '../views/chamados/solicitar/Categorias';
+import AbrirChamado from '../views/chamados/AbrirChamado';
+import Categorias from '../views/chamados/Categorias';
 
-import ChamadosAbertos from '../views/chamados/detalhar/ChamadosAbertos';
-import Ocorrencias from '../views/chamados/detalhar/Ocorrencias';
+import ChamadosAbertos from '../views/chamados/ChamadosAbertos';
+import Ocorrencias from '../views/chamados/Ocorrencias';
 
 import Perfil from '../views/segurança/Perfil';
 import BemVindo from '../views/segurança/BemVindo';

@@ -29,6 +29,7 @@ class Categorias extends React.Component {
                   onPress={() =>
                     this.props.navigation.navigate('AbrirChamado', {
                       id: item.cod_categoria,
+                      nome: item.nome_categoria,
                     })
                   }>
                   <View style={styles.viewTouch}>

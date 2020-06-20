@@ -17,6 +17,13 @@ const Token = {
       console.log(error);
     }
   },
+  removerToken: async () => {
+    try {
+      await AsyncStorage.removeItem('@Token');
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 export default Token;
