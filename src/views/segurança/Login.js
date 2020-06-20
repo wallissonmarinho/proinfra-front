@@ -6,7 +6,24 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {Input} from '@ui-kitten/components';
 
 class Login extends Component {
+  state = {
+    visivel: false,
+  };
+
+  handleClick = () => {
+    this.setState({visivel: !this.state.visivel});
+  };
+
   render() {
+    const renderIcon = () => (
+      <TouchableOpacity onPress={this.handleClick}>
+        <MaterialCommunityIcons
+          size={20}
+          name={this.state.visivel ? 'eye-off' : 'eye'}
+        />
+      </TouchableOpacity>
+    );
+
     const {loginStore, navigation} = this.props;
     return (
       <View style={styles.flex}>
@@ -51,6 +68,8 @@ class Login extends Component {
                         placeholder="Senha"
                         style={styles.Input}
                         value={loginStore.login.senha}
+                        accessoryRight={renderIcon}
+                        secureTextEntry={this.state.visivel}
                         onChangeText={(text) =>
                           loginStore.handleChangeSenha(text)
                         }
