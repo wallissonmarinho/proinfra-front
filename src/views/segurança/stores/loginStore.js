@@ -68,10 +68,6 @@ class LoginStore {
         mensagem.error('Usuário e/ou senha incorreto(s)!');
       }
 
-      if (result.status === 403) {
-        mensagem.error('Usuário não encontrado!');
-      }
-
       if (result.status === 200) {
         navigation.navigate('HomeTabs');
         this.reset();
