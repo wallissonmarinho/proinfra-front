@@ -53,8 +53,6 @@ class LoginStore {
         mensagem.error('Erro ao efetuar o login! Por favor, tente novamente.');
       }
 
-      console.log(result);
-
       this.usuario = await this.obterIdClienteLogado(
         result.headers.authorization,
       );
