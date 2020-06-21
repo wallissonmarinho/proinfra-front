@@ -4,8 +4,8 @@ import {mensagem} from '../../../helpers';
 
 class LoginStore {
   login = {
-    email: null,
-    senha: null,
+    email: 'matheus.lucassilva@gmail.com',
+    senha: '12345',
   };
 
   usuario = {
@@ -52,6 +52,8 @@ class LoginStore {
       if (!result.headers.authorization || result.status === 404) {
         mensagem.error('Erro ao efetuar o login! Por favor, tente novamente.');
       }
+
+      console.log(result);
 
       this.usuario = await this.obterIdClienteLogado(
         result.headers.authorization,
