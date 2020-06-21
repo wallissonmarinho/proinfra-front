@@ -26,32 +26,50 @@ class Ocorrencias extends React.Component {
               <Title>Ocorrencias</Title>
             </Body>
           </Header>
-          <View style={{flex: 1, padding: 20}}>
-            <FlatList
-              data={chamadoStore.chamados}
-              renderItem={({item, index}) => (
-                <View>
-                  <View style={styles.viewTouch}>
-                    <View style={styles.viewTouchIcon}>
-                      <MaterialIcons
-                        name={item.categoria.nome_imagem_categoria}
-                        size={40}
-                        color={'black'}
-                      />
-                    </View>
-                    <View style={styles.viewTouchText}>
-                      <Text style={{fontSize: 17}}>
-                        Tipo de Chamado: {item.categoria.nome_categoria}
-                      </Text>
-                      <Text style={{fontSize: 17}}>Data: {item.instante}</Text>
-                      <Text style={{fontSize: 17}}>Status: {item.estado}</Text>
+          {chamadoStore.chamados.length < 1 && (
+            <Text
+              style={{
+                margin: 20,
+                textAlign: 'center',
+                fontWeight: 'bold',
+                fontSize: 20,
+              }}>
+              {' '}
+              Nenhum chamado cadastrado!
+            </Text>
+          )}
+          {chamadoStore.chamados.length > 0 && (
+            <View style={{flex: 1, padding: 20}}>
+              <FlatList
+                data={chamadoStore.chamados}
+                renderItem={({item, index}) => (
+                  <View>
+                    <View style={styles.viewTouch}>
+                      <View style={styles.viewTouchIcon}>
+                        <MaterialIcons
+                          name={item.categoria.nome_imagem_categoria}
+                          size={40}
+                          color={'black'}
+                        />
+                      </View>
+                      <View style={styles.viewTouchText}>
+                        <Text style={{fontSize: 17}}>
+                          Tipo de Chamado: {item.categoria.nome_categoria}
+                        </Text>
+                        <Text style={{fontSize: 17}}>
+                          Data: {item.instante}
+                        </Text>
+                        <Text style={{fontSize: 17}}>
+                          Status: {item.estado}
+                        </Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-              )}
-              keyExtractor={(item, index) => index.toString()}
-            />
-          </View>
+                )}
+                keyExtractor={(item, index) => index.toString()}
+              />
+            </View>
+          )}
         </View>
       </Container>
     );

@@ -4,8 +4,8 @@ import {mensagem} from '../../../helpers';
 
 class LoginStore {
   login = {
-    email: 'matheus.lucassilva@gmail.com',
-    senha: '12345',
+    email: null,
+    senha: null,
   };
 
   usuario = {
@@ -21,6 +21,9 @@ class LoginStore {
       email: null,
       senha: null,
     };
+  }
+
+  resetUsuario() {
     this.usuario = {
       cod_usuario: 0,
       data_nascimento: null,
@@ -71,6 +74,7 @@ class LoginStore {
 
       if (result.status === 200) {
         navigation.navigate('HomeTabs');
+        this.reset();
       }
     } catch (e) {
       console.log(e);
@@ -92,13 +96,14 @@ class LoginStore {
   async logout(navigation) {
     await Subject.removerSubject();
     navigation.navigate('Login');
-    this.reset();
+    this.resetUsuario();
   }
 }
 
 decorate(LoginStore, {
   login: observable,
   usuario: observable,
+  resetUsuario: observable,
   logar: action.bound,
   obterIdClienteLogado: action.bound,
   handleChangeUsuario: action.bound,

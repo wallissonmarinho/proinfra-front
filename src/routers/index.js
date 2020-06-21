@@ -4,8 +4,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import * as eva from '@eva-design/eva';
-import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
 
 import 'react-native-gesture-handler';
 

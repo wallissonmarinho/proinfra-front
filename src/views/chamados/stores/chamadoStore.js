@@ -185,6 +185,7 @@ class chamadoStore {
 
       if (result.status === 201) {
         mensagem.info('Chamado cadastrado com sucesso!');
+        this.obterChamadosUsuario();
         this.resetChamado();
       }
     } catch (e) {
