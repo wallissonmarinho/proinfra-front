@@ -1,16 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {inject, observer} from 'mobx-react';
-import {StyleSheet, Text, TouchableOpacity, View, FlatList} from 'react-native';
+import {StyleSheet, Text, View, FlatList} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Ocorrencias extends React.Component {
   static propTypes = {
-    detalharStore: PropTypes.object.isRequired,
+    chamadoStore: PropTypes.object.isRequired,
   };
+
+  componentDidMount() {
+    const {chamadoStore} = this.props;
+    chamadoStore.obterChamadosUsuario();
+  }
+
   render() {
-    const {detalharStore} = this.props;
+    const {chamadoStore} = this.props;
 
     return (
       <Container>
@@ -22,27 +28,28 @@ class Ocorrencias extends React.Component {
           </Header>
           <View style={{flex: 1, padding: 20}}>
             <FlatList
-              data={detalharStore.categorias}
+              data={chamadoStore.chamados}
               renderItem={({item, index}) => (
                 <View>
                   <View style={styles.viewTouch}>
                     <View style={styles.viewTouchIcon}>
                       <MaterialIcons
-                        name={item.icone}
+                        name={item.categoria.nome_imagem_categoria}
                         size={40}
                         color={'black'}
                       />
                     </View>
                     <View style={styles.viewTouchText}>
                       <Text style={{fontSize: 17}}>
-                        Tipo de Chamado: {item.tipo}
+                        Tipo de Chamado: {item.categoria.nome_categoria}
                       </Text>
-                      <Text style={{fontSize: 17}}>Data: {item.data}</Text>
-                      <Text style={{fontSize: 17}}>Status: {item.status}</Text>
+                      <Text style={{fontSize: 17}}>Data: {item.instante}</Text>
+                      <Text style={{fontSize: 17}}>Status: {item.estado}</Text>
                     </View>
                   </View>
                 </View>
               )}
+              keyExtractor={(item, index) => index.toString()}
             />
           </View>
         </View>
@@ -77,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default inject('detalharStore')(observer(Ocorrencias));
+export default inject('chamadoStore')(observer(Ocorrencias));

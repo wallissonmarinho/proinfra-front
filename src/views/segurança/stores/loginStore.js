@@ -1,11 +1,19 @@
 import {decorate, observable, action} from 'mobx';
-import {LoginService, Token} from '../../../services';
+import {LoginService, Subject} from '../../../services';
 import {mensagem} from '../../../helpers';
 
 class LoginStore {
   login = {
+    email: 'matheus.lucassilva@gmail.com',
+    senha: '12345',
+  };
+
+  usuario = {
+    cod_usuario: 0,
+    data_nascimento: null,
     email: null,
-    senha: null,
+    nome: null,
+    telefone: null,
   };
 
   reset() {
@@ -13,6 +21,17 @@ class LoginStore {
       email: null,
       senha: null,
     };
+    this.usuario = {
+      cod_usuario: 0,
+      data_nascimento: null,
+      email: null,
+      nome: null,
+      telefone: null,
+    };
+  }
+
+  handleChangeUsuario(name, value) {
+    this.usuario[name] = value;
   }
 
   handleChangeEmail(text) {
@@ -31,7 +50,16 @@ class LoginStore {
         mensagem.error('Erro ao efetuar o login! Por favor, tente novamente.');
       }
 
-      await Token.salvarToken(result.headers.authorization);
+      this.usuario = await this.obterIdClienteLogado(
+        result.headers.authorization,
+      );
+
+      const subject = {
+        token: result.headers.authorization,
+        usuario: this.usuario,
+      };
+
+      await Subject.salvarSubject(subject);
 
       if (result.status === 401) {
         mensagem.error('Usuário e/ou senha incorreto(s)!');
@@ -43,17 +71,38 @@ class LoginStore {
 
       if (result.status === 200) {
         navigation.navigate('HomeTabs');
-        this.reset();
       }
     } catch (e) {
       console.log(e);
     }
   }
+
+  async obterIdClienteLogado(token) {
+    try {
+      const result = await LoginService.obterIdClienteLogado(token);
+
+      if (result.status === 200) {
+        return result.data;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async logout(navigation) {
+    await Subject.removerSubject();
+    navigation.navigate('Login');
+    this.reset();
+  }
 }
 
 decorate(LoginStore, {
   login: observable,
+  usuario: observable,
   logar: action.bound,
+  obterIdClienteLogado: action.bound,
+  handleChangeUsuario: action.bound,
+  logout: action.bound,
 });
 
 export default new LoginStore();

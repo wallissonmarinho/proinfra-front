@@ -19,7 +19,7 @@ class Login extends Component {
       <TouchableOpacity onPress={this.handleClick}>
         <MaterialCommunityIcons
           size={20}
-          name={this.state.visivel ? 'eye-off' : 'eye'}
+          name={this.state.visivel ? 'eye' : 'eye-off'}
         />
       </TouchableOpacity>
     );
@@ -69,7 +69,7 @@ class Login extends Component {
                         style={styles.Input}
                         value={loginStore.login.senha}
                         accessoryRight={renderIcon}
-                        secureTextEntry={this.state.visivel}
+                        secureTextEntry={!this.state.visivel}
                         onChangeText={(text) =>
                           loginStore.handleChangeSenha(text)
                         }

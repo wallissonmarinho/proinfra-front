@@ -23,7 +23,7 @@ class AbrirChamado extends React.Component {
   }
 
   static propTypes = {
-    categoriaStore: PropTypes.object,
+    chamadoStore: PropTypes.object,
   };
 
   state = {
@@ -31,7 +31,7 @@ class AbrirChamado extends React.Component {
   };
 
   componentDidMount() {
-    this.props.categoriaStore.localizacao();
+    this.props.chamadoStore.localizacao();
   }
 
   handleOpen = () => this.setState({modalVisible: true});
@@ -39,8 +39,8 @@ class AbrirChamado extends React.Component {
   handleClose = () => this.setState({modalVisible: false});
 
   render() {
-    const {categoriaStore} = this.props;
-    const {id} = this.props.route.params;
+    const {chamadoStore} = this.props;
+    const {id, nome} = this.props.route.params;
 
     return (
       <Container>
@@ -63,7 +63,7 @@ class AbrirChamado extends React.Component {
           <View style={{flex: 1}}>
             <View style={{marginRight: 10, marginTop: 10}}>
               <TouchableOpacity
-                onPress={() => categoriaStore.localizacao()}
+                onPress={() => chamadoStore.localizacao()}
                 style={styles.buttonLocalizacao}>
                 <Icon name="my-location" color={'#fff'} size={30} />
               </TouchableOpacity>
@@ -73,8 +73,8 @@ class AbrirChamado extends React.Component {
               provider={PROVIDER_GOOGLE}
               showsUserLocation
               region={{
-                latitude: categoriaStore.mapa.latitude || -7.1183954,
-                longitude: categoriaStore.mapa.longitude || -34.8482065,
+                latitude: chamadoStore.mapa.latitude || -7.1183954,
+                longitude: chamadoStore.mapa.longitude || -34.8482065,
                 latitudeDelta: 0.015,
                 longitudeDelta: 0.015,
               }}
@@ -116,10 +116,8 @@ class AbrirChamado extends React.Component {
                         width: 200,
                         paddingBottom: 20,
                       }}>
-                      {id === 1 && <Text>Água / Esgoto!</Text>}
-                      {id === 2 && <Text>Energia!</Text>}
-                      {id === 3 && <Text>Obstrução!</Text>}
-                      {id === 4 && <Text>Vias!</Text>}
+                      <Text>{nome}</Text>
+
                       <TouchableOpacity onPress={this.handleClose}>
                         <MaterialIcons
                           name="close-box-outline"
@@ -130,11 +128,24 @@ class AbrirChamado extends React.Component {
                     </View>
                     <Input
                       style={{paddingBottom: 20, width: '100%'}}
+                      value={chamadoStore.chamado.descricaoChamado}
+                      name="descricaoChamado"
                       multiline={true}
                       textStyle={{minHeight: 64}}
                       placeholder="Descreva..."
+                      onChangeText={(text) =>
+                        chamadoStore.handleChangeChamado(
+                          'descricaoChamado',
+                          text,
+                        )
+                      }
                     />
                     <TouchableOpacity
+                      onPress={() => {
+                        chamadoStore.obterCodigoCategoriaSelecionada(id);
+                        chamadoStore.criarNovoChamado();
+                        this.handleClose();
+                      }}
                       style={{
                         backgroundColor: '#2196f3',
                         width: 200,
@@ -200,4 +211,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default inject('categoriaStore')(observer(AbrirChamado));
+export default inject('chamadoStore')(observer(AbrirChamado));

@@ -5,19 +5,18 @@ import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Header, Container, Body, Title} from 'native-base';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import RoadImg from '../../../assets/road.png';
 
 class ChamadosAbertos extends React.Component {
   static propTypes = {
-    detalharStore: PropTypes.object.isRequired,
+    chamadoStore: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
-    this.props.detalharStore.localizacao();
+    this.props.chamadoStore.localizacao();
   }
 
   render() {
-    const {detalharStore} = this.props;
+    const {chamadoStore} = this.props;
 
     return (
       <Container>
@@ -30,7 +29,9 @@ class ChamadosAbertos extends React.Component {
           <View style={{flex: 1}}>
             <View style={{marginRight: 10, marginTop: 10}}>
               <TouchableOpacity
-                onPress={() => detalharStore.localizacao()}
+                onPress={() => {
+                  chamadoStore.localizacao();
+                }}
                 style={styles.buttonLocalizacao}>
                 <Icon name="my-location" color={'#fff'} size={30} />
               </TouchableOpacity>
@@ -40,12 +41,12 @@ class ChamadosAbertos extends React.Component {
               provider={PROVIDER_GOOGLE}
               showsUserLocation
               region={{
-                latitude: detalharStore.mapa.latitude || -7.1183954,
-                longitude: detalharStore.mapa.longitude || -34.8482065,
+                latitude: chamadoStore.mapa.latitude || -7.1183954,
+                longitude: chamadoStore.mapa.longitude || -34.8482065,
                 latitudeDelta: 0.015,
                 longitudeDelta: 0.015,
               }}>
-              <Markers detalharStore={detalharStore} />
+              <Markers chamadoStore={chamadoStore} />
             </MapView>
           </View>
         </View>
@@ -54,8 +55,8 @@ class ChamadosAbertos extends React.Component {
   }
 }
 
-const Markers = ({detalharStore}) =>
-  detalharStore.markers.map((marker, index) => (
+const Markers = ({chamadoStore}) =>
+  chamadoStore.markers.map((marker, index) => (
     <View key={index}>
       {marker.title === '0' && (
         <Marker
@@ -64,7 +65,7 @@ const Markers = ({detalharStore}) =>
             longitude: marker.longitude,
           }}
           title={'Agua / Esgoto'}
-          icon={require('../../../assets/water-pump.png')}
+          icon={require('../../assets/water-pump.png')}
         />
       )}
       {marker.title === '1' && (
@@ -74,7 +75,7 @@ const Markers = ({detalharStore}) =>
             longitude: marker.longitude,
           }}
           title={'Energia'}
-          icon={require('../../../assets/flash.png')}
+          icon={require('../../assets/flash.png')}
         />
       )}
       {marker.title === '2' && (
@@ -84,7 +85,7 @@ const Markers = ({detalharStore}) =>
             longitude: marker.longitude,
           }}
           title={'Obstrução'}
-          icon={require('../../../assets/sign-caution.png')}
+          icon={require('../../assets/sign-caution.png')}
         />
       )}
       {marker.title === '3' && (
@@ -94,7 +95,7 @@ const Markers = ({detalharStore}) =>
             longitude: marker.longitude,
           }}
           title={'Vias'}
-          icon={require('../../../assets/road.png')}
+          icon={require('../../assets/road.png')}
         />
       )}
     </View>
@@ -135,4 +136,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default inject('detalharStore')(observer(ChamadosAbertos));
+export default inject('chamadoStore')(observer(ChamadosAbertos));

@@ -6,12 +6,12 @@ import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Categorias extends React.Component {
   componentDidMount() {
-    const {categoriaStore} = this.props;
-    categoriaStore.obterListaCategorias();
+    const {chamadoStore} = this.props;
+    chamadoStore.obterListaCategorias();
   }
 
   render() {
-    const {categoriaStore} = this.props;
+    const {chamadoStore} = this.props;
 
     return (
       <Container>
@@ -23,7 +23,7 @@ class Categorias extends React.Component {
           </Header>
           <View style={{flex: 1, padding: 20}}>
             <FlatList
-              data={categoriaStore.categorias}
+              data={chamadoStore.categorias}
               renderItem={({item, index}) => (
                 <TouchableOpacity
                   onPress={() =>
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default inject('categoriaStore')(observer(Categorias));
+export default inject('chamadoStore')(observer(Categorias));

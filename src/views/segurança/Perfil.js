@@ -1,15 +1,23 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
+import {inject, observer} from 'mobx-react';
 import {Header, Container, Body, Title, Button, Text} from 'native-base';
 import {Input} from '@ui-kitten/components';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class Perfil extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     perfil: 0,
   };
+
   render() {
+    const {loginStore, navigation} = this.props;
+
     return (
       <Container>
         <View style={{flex: 1}}>
@@ -49,6 +57,7 @@ class Perfil extends React.Component {
                       style={styles.Input}
                       placeholder="Fulano XPTO"
                       name="nomeCompleto"
+                      value={loginStore.usuario.nome}
                     />
                     <Input
                       disabled
@@ -56,14 +65,15 @@ class Perfil extends React.Component {
                       placeholder="01/01/2020"
                       name="data_nascimento"
                       keyboardType="numeric"
+                      value={loginStore.usuario.data_nascimento}
                     />
-
                     <Input
                       disabled
                       style={styles.Input}
                       placeholder="(83) 9 2121-4343"
                       name="telefone"
                       keyboardType="numeric"
+                      value={loginStore.usuario.telefone}
                     />
 
                     <Input
@@ -71,6 +81,7 @@ class Perfil extends React.Component {
                       style={styles.Input}
                       placeholder="emailxpto@xpto.com"
                       name="email"
+                      value={loginStore.usuario.email}
                     />
                     <View
                       style={{
@@ -91,19 +102,6 @@ class Perfil extends React.Component {
                       </Button>
                     </View>
                   </View>
-                  <View>
-                    <Button
-                      block
-                      style={{
-                        backgroundColor: 'red',
-                        marginTop: 20,
-                        marginRight: 20,
-                        marginLeft: 20,
-                        borderRadius: 4,
-                      }}>
-                      <Text>Sair</Text>
-                    </Button>
-                  </View>
                 </ScrollView>
               )}
               {this.state.perfil === 1 && (
@@ -112,26 +110,42 @@ class Perfil extends React.Component {
                     <Input
                       style={styles.Input}
                       placeholder="Fulano XPTO"
-                      name="nomeCompleto"
+                      name="nome"
+                      value={loginStore.usuario.nome}
+                      onChangeText={(text) =>
+                        loginStore.handleChangeUsuario('nome', text)
+                      }
                     />
                     <Input
                       style={styles.Input}
                       placeholder="01/01/2020"
-                      name="data_nascimento"
                       keyboardType="numeric"
+                      name="data_nascimento"
+                      value={loginStore.usuario.data_nascimento}
+                      onChangeText={(text) =>
+                        loginStore.handleChangeUsuario('data_nascimento', text)
+                      }
                     />
 
                     <Input
                       style={styles.Input}
                       placeholder="(83) 9 2121-4343"
-                      name="telefone"
                       keyboardType="numeric"
+                      name="telefone"
+                      value={loginStore.usuario.telefone}
+                      onChangeText={(text) =>
+                        loginStore.handleChangeUsuario('telefone', text)
+                      }
                     />
 
                     <Input
                       style={styles.Input}
                       placeholder="emailxpto@xpto.com"
                       name="email"
+                      value={loginStore.usuario.email}
+                      onChangeText={(text) =>
+                        loginStore.handleChangeUsuario('email', text)
+                      }
                     />
                     <View
                       style={{
@@ -150,19 +164,6 @@ class Perfil extends React.Component {
                         <Text>Salvar</Text>
                       </Button>
                     </View>
-                  </View>
-                  <View>
-                    <Button
-                      block
-                      style={{
-                        backgroundColor: 'red',
-                        marginTop: 20,
-                        marginRight: 20,
-                        marginLeft: 20,
-                        borderRadius: 4,
-                      }}>
-                      <Text>Sair</Text>
-                    </Button>
                   </View>
                 </ScrollView>
               )}
@@ -203,21 +204,23 @@ class Perfil extends React.Component {
                       </Button>
                     </View>
                   </View>
-                  <View>
-                    <Button
-                      block
-                      style={{
-                        backgroundColor: 'red',
-                        marginTop: 20,
-                        marginRight: 20,
-                        marginLeft: 20,
-                        borderRadius: 4,
-                      }}>
-                      <Text>Sair</Text>
-                    </Button>
-                  </View>
                 </ScrollView>
               )}
+              <View>
+                <Button
+                  block
+                  style={{
+                    backgroundColor: 'red',
+                    margin: 20,
+                    borderRadius: 4,
+                  }}
+                  onPress={() => {
+                    console.log('rodei');
+                    loginStore.logout(navigation);
+                  }}>
+                  <Text>Sair</Text>
+                </Button>
+              </View>
             </View>
           </View>
         </View>
@@ -244,4 +247,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Perfil;
+export default inject('loginStore')(observer(Perfil));
